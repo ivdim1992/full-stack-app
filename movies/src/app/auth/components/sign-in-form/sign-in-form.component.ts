@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 export interface ISignInForm {
   email: string;
@@ -14,10 +15,10 @@ export interface ISignInForm {
 })
 export class SignInFormComponent implements OnInit {
   public signInForm: FormGroup;
-
+  public testId = '123';
   @Output() public signInFormValues = new EventEmitter<ISignInForm>();
 
-  constructor(private readonly formBuilder: FormBuilder) {}
+  constructor(private readonly formBuilder: FormBuilder, private readonly router: Router) {}
 
   public ngOnInit(): void {
     this.signInForm = this.formBuilder.group({

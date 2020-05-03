@@ -8,9 +8,17 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './containers';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RootStoreModule } from './+store';
 @NgModule({
   declarations: [AppComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgHttpLoaderModule.forRoot(), NoopAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
+    NoopAnimationsModule,
+    RootStoreModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
