@@ -1,0 +1,37 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+@import '~@angular/flex-layout/mq';
+@import 'abstracts/colors';
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // Makes 1rem to equal 10px
+  height: 100%;
+
+  @include layout-bp(lt-md) {
+    font-size: 50%; // Mobile scaling
+  }
+}
+
+body {
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+  color: $base-text-color;
+  font-weight: normal;
+
+  height: 100%;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  font-weight: inherit;
+}

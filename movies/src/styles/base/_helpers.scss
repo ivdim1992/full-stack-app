@@ -1,0 +1,9 @@
+@import 'abstracts/colors';
+.block {
+  display: block;
+}
+
+a {
+  color: map-get($mvp-pink, 400);
+  text-decoration: none;
+}

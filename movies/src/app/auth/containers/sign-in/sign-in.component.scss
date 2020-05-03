@@ -1,0 +1,12 @@
+@import 'abstracts/colors';
+
+:host {
+  display: block;
+  width: 80%;
+
+  .form-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: map-get($mvp-pink, 400);
+  }
+}

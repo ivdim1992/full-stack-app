@@ -1,0 +1,60 @@
+@import '~@angular/material/theming';
+
+$primary-color-dark: #c2185b;
+$primary-color: #e91e63;
+$primary-color-light: #f8bbd0;
+$primary-color-text: #ffffff;
+$accent-color: #9e9e9e;
+$primary-text-color: #212121;
+$secondary-text-color: #757575;
+$divider-color: #bdbdbd;
+
+$base-text-color: $primary-text-color;
+$muted-text-color: $accent-color;
+$link-color: $primary-color;
+
+$mvp-pink: (
+  50: #fce4ec,
+  100: #f8bbd0,
+  200: #f48fb1,
+  300: #f06292,
+  400: #ec407a,
+  500: #e91e63,
+  600: #d81b60,
+  700: #c2185b,
+  800: #ad1457,
+  900: #880e4f,
+  contrast: (
+    A100: #ff80ab,
+    A200: #ff4081,
+    A400: #f50057,
+    A700: #c51162,
+  ),
+);
+
+$mvp-gray: (
+  50: #fafafa,
+  100: #f5f5f5,
+  200: #eeeeee,
+  300: #e0e0e0,
+  400: #bdbdbd,
+  500: #9e9e9e,
+  600: #757575,
+  700: #616161,
+  800: #424242,
+  900: #212121,
+  contrast: (
+    A100: #f5f5f5,
+    A200: #eeeeee,
+    A400: #e0e0e0,
+    A700: #616161,
+  ),
+);
+
+$mvp-primary: mat-palette($mvp-pink);
+$mvp-accent: mat-palette($mvp-gray);
+$mvp-warn: mat-palette($mat-red);
+
+.text-warning {
+  color: #e53935;
+}

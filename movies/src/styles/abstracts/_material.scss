@@ -1,0 +1,18 @@
+@import '~@angular/material/theming';
+@import 'abstracts/colors';
+
+@include mat-core();
+
+// Create the theme object (a Sass map containing all of the palettes).
+$mvp-ui-theme: mat-light-theme($mvp-primary, $mvp-accent, $mvp-warn);
+
+@include angular-material-theme($mvp-ui-theme);
+
+// .alternate-theme {
+//   $alternate-primary: mat-palette($mat-light-blue);
+//   $alternate-accent: mat-palette($mat-yellow, 400);
+
+//   $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+
+//   @include angular-material-theme($alternate-theme);
+// }

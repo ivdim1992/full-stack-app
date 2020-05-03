@@ -1,0 +1,14 @@
+@import 'abstracts/colors';
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  mat-icon {
+    color: map-get($mvp-gray, 400);
+  }
+
+  button {
+    padding: 5px 50px;
+  }
+}
