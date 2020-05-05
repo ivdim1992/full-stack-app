@@ -5,6 +5,7 @@ import { ROOT_REDUCERS, metaReducers, routerStateKey } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomRouterSerializer } from './router-serializer/router-serializer';
+import { AuthStoreModule } from '../auth/+store/auth-store.module';
 
 @NgModule({
   declarations: [],
@@ -31,8 +32,8 @@ import { CustomRouterSerializer } from './router-serializer/router-serializer';
     StoreRouterConnectingModule.forRoot({
       stateKey: routerStateKey,
       serializer: CustomRouterSerializer
-    })
-    //   AuthStoreModule,
+    }),
+    AuthStoreModule
   ]
 })
 export class RootStoreModule {}

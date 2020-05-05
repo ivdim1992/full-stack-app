@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  whiteListedHosts: ["localhost:2020"],
+  whiteListedHosts: ['http://localhost:2020'],
   api: {
-    baseURL: "localhost:2020/api",
-  },
+    baseURL: 'http://localhost:2020/api'
+  }
 };
 
 /*
