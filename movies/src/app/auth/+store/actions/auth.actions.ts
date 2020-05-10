@@ -1,13 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { IUser } from 'src/app/shared/interfaces/user.interface';
+import { IAuth, IUser } from 'src/app/shared/interfaces';
 
 // API
-export const registerUser = createAction(
-  '[Authentication Module] Register User',
-  props<{ email: string; password: string }>()
-);
+export const registerUser = createAction('[Authentication Module] Register User', props<{ data: IAuth }>());
 
-export const signInUser = createAction('[Authentication Module] Sign In', props<{ email: string; password: string }>());
+export const signInUser = createAction('[Authentication Module] Sign In', props<{ data: IAuth }>());
 
 // Success
 export const registerUserSuccess = createAction(

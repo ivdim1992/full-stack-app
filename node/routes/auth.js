@@ -10,6 +10,10 @@ router.post('/auth/register', async (req, res, next) => {
         const token = await user.generateAuthToken();
         res.status(201).send({ user, token });
     } catch (error) {
+        if (error.code === 11000) {
+            res.status(400).send({ message: 'The user already exist!' });
+            return;
+        }
         res.status(400).send(error);
     }
 });

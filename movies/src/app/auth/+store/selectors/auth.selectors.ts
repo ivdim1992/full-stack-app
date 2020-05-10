@@ -5,3 +5,5 @@ import { authKey } from '../reducers';
 export const selectFeature = createFeatureSelector<fromAuthReducer.AuthState>(authKey);
 
 export const selectUser = createSelector(selectFeature, (state) => state.user);
+
+export const isLoggedIn = createSelector(selectUser, (user) => !!user);

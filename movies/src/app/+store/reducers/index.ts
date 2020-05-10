@@ -11,7 +11,7 @@ export interface State {
 }
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({ keys: ['user'], rehydrate: true })(reducer);
+  return localStorageSync({ keys: ['auth'], rehydrate: true })(reducer);
 }
 
 export const metaReducers = [localStorageSyncReducer];

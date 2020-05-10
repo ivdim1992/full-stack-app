@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  whiteListedHosts: ['http://localhost:2020'],
+  whiteListedHosts: ['localhost:2020/movies'],
   api: {
     baseURL: 'http://localhost:2020/api'
   }

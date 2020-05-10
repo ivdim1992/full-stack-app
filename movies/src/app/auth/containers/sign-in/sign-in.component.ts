@@ -15,8 +15,6 @@ export class SignInComponent implements OnInit {
   public ngOnInit(): void {}
 
   public onSubmitSignIn(values: ISignInForm) {
-    const { email, password } = values;
-
-    this.authStoreFacade.signIn(email, password);
+    this.authStoreFacade.signIn(values);
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
-import { IUser } from '../shared/interfaces/user.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { GLOBAL_SETTINGS, GlobalSettings } from '../shared/tokens';
+import { IUser, IAuth } from '../shared/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -16,11 +16,15 @@ export class AuthService {
     this.baseURL = this.settings.api.baseURL;
   }
 
-  public signIn(email: string, password: string): Observable<IUser> {
-    return this.http.post<IUser>(`${this.baseURL}/auth/login`, { email, password });
+  public signIn(body: IAuth): Observable<IUser> {
+    return this.http.post<IUser>(`${this.baseURL}/auth/login`, body);
   }
 
-  public register(email: string, password: string): Observable<IUser> {
-    return this.http.post<IUser>(`${this.baseURL}/auth/register`, { email, password });
+  public register(body: IAuth): Observable<IUser> {
+    return this.http.post<IUser>(`${this.baseURL}/auth/register`, body);
+  }
+
+  public logout(data = null): Observable<null> {
+    return this.http.post<null>(`${this.baseURL}/auth/logout`, data);
   }
 }

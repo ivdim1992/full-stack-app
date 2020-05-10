@@ -5,4 +5,4 @@ export interface GlobalSettings {
   whiteListedHosts: string[];
 }
 
-export const GLOBAL_SETTINGS = new InjectionToken('GLOBAL_SETTINGS');
+export const GLOBAL_SETTINGS = new InjectionToken<GlobalSettings>('GLOBAL_SETTINGS');

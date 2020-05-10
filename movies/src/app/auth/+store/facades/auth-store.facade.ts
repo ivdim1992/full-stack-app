@@ -4,6 +4,7 @@ import { AuthActions } from '../actions';
 import { Store, select } from '@ngrx/store';
 import * as fromAuth from '../reducers';
 import { AuthSelectors } from '../selectors';
+import { IAuth } from 'src/app/shared/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class AuthStoreFacade {
@@ -11,11 +12,11 @@ export class AuthStoreFacade {
 
   public user$ = this.store.pipe(select(AuthSelectors.selectUser));
 
-  public signIn(email: string, password: string) {
-    this.store.dispatch(AuthActions.signInUser({ email, password }));
+  public signIn(data: IAuth) {
+    this.store.dispatch(AuthActions.signInUser({ data }));
   }
 
-  public register(email: string, password: string) {
-    this.store.dispatch(AuthActions.registerUser({ email, password }));
+  public register(data: IAuth) {
+    this.store.dispatch(AuthActions.registerUser({ data }));
   }
 }

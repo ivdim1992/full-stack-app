@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { IRegisterForm } from '../../components';
+import { AuthStoreFacade } from '../../+store/facades';
 
 @Component({
   selector: 'app-register',
@@ -8,11 +9,11 @@ import { IRegisterForm } from '../../components';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly authStoreFacade: AuthStoreFacade) {}
 
   ngOnInit(): void {}
 
   public onSubmitRegisterForm(values: IRegisterForm) {
-    debugger;
+    this.authStoreFacade.register(values);
   }
 }
