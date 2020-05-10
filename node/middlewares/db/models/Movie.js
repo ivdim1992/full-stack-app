@@ -17,6 +17,10 @@ const MovieSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    isFavorite: {
+        type: Boolean,
+        required: false,
+    },
     genre: [
         {
             type: String,

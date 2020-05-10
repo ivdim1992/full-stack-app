@@ -27,7 +27,6 @@ const auth = async (req, res, next) => {
 
         const user = await User.findOne({
             _id: data._id,
-            'tokens.token': token,
         });
 
         if (!user) {
