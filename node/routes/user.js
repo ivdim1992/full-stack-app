@@ -1,31 +1,35 @@
-// const express = require('express');
-// const router = express.Router();
-// const User = require('../middlewares/db/models/User');
+const express = require('express');
+const router = express.Router();
+const ObjectId = require('mongodb').ObjectId;
+const User = require('../middlewares/db/models/User');
 
-// router.get('/users', async (req, res, next) => {
-//     try {
-//         const user = await
-//         await user.save();
-//         const token = await user.generateAuthToken(user);
-//         res.status(201).send({ user, token });
-//     } catch (error) {
-//         res.status(400).send(error);
-//     }
-// });
+router.get('/users/:userId', async (req, res, next) => {
+    try {
+        const id = new ObjectId(req.params.userId);
 
-// router.post('/auth/login', async (req, res) => {
-//     try {
-//         const { email, password } = req.body;
-//         const user = await User.findByCredentials(email, password);
-//         if (!user) {
-//             return res
-//                 .status(401)
-//                 .send({ error: 'Login failed! Check credentials' });
-//         }
-//         const token = await user.generateAuthToken();
-//         res.send({ user, token });
-//     } catch (error) {
-//         res.status(400).send(error.message);
-//     }
-// });
-// module.exports = router;
+        const user = await User.findOne({ _id: id });
+
+        res.status(200).setHeader('Content-Type', 'application/json');
+        return res.end(JSON.stringify(user));
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
+router.put('/users/:userId', async (req, res, next) => {
+    try {
+        const id = new ObjectId(req.params.userId);
+        await req.models.User.updateOne({ _id: id }, req.body);
+
+        res.status(200).setHeader('Content-Type', 'application/json');
+        return res.end(
+            JSON.stringify(
+                Object.assign({}, req.body, { _id: req.params.userId })
+            )
+        );
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
+module.exports = router;

@@ -38,7 +38,8 @@ module.exports = {
         app.use('/api', logger);
 
         app.use(swaggerRoutes);
-        app.use('/api', authRoutes, moviesRoutes);
+        app.use('/api', authRoutes);
+        app.use('/api', auth, moviesRoutes, userRoutes);
 
         app.use((req, res, next) => {
             res.status(404).send('<h1>Page not found</h1>');

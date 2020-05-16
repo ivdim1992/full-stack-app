@@ -7,13 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "precise-commits": "precise-commits",
     "e2e": "ng e2e"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "npm run test && ng lint"
-    }
+    "hooks": {}
   },
   "private": true,
   "dependencies": {

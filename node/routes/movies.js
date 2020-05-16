@@ -4,7 +4,7 @@ const router = express.Router();
 const auth = require('../middlewares/auth/index');
 const Movie = require('../middlewares/db/models/Movie');
 
-router.get('/movies', auth, async (req, res, next) => {
+router.get('/movies', async (req, res, next) => {
     try {
         const movies = await Movie.find({});
 
@@ -16,7 +16,7 @@ router.get('/movies', auth, async (req, res, next) => {
     }
 });
 
-router.post('/movies', auth, async (req, res, next) => {
+router.post('/movies', async (req, res, next) => {
     try {
         if (!req.body.title || !req.body.description) {
             res.status(400).send({ error: 'title and description required' })
@@ -32,7 +32,7 @@ router.post('/movies', auth, async (req, res, next) => {
     }
 });
 
-router.get('/movies/:movieId', auth, async (req, res, next) => {
+router.get('/movies/:movieId', async (req, res, next) => {
     try {
         const id = new ObjectId(req.params.movieId);
         const movie = await req.models.Movie.findOne({ _id: id });
@@ -44,7 +44,7 @@ router.get('/movies/:movieId', auth, async (req, res, next) => {
     }
 });
 
-router.put('/movies/:movieId', auth, async (req, res, next) => {
+router.put('/movies/:movieId', async (req, res, next) => {
     try {
         const id = new ObjectId(req.params.movieId);
         await req.models.Movie.updateOne({ _id: id }, req.body);
@@ -60,7 +60,7 @@ router.put('/movies/:movieId', auth, async (req, res, next) => {
     }
 });
 
-router.post('/movies/:movieId/favorites', auth, async (req, res, next) => {
+router.post('/movies/:movieId/favorites', async (req, res, next) => {
     try {
         const id = new ObjectId(req.params.movieId);
 
@@ -77,7 +77,7 @@ router.post('/movies/:movieId/favorites', auth, async (req, res, next) => {
     }
 });
 
-router.get('/movies/favorites/all', auth, async (req, res, next) => {
+router.get('/movies/favorites/all', async (req, res, next) => {
     try {
         const favoriteMovies = await Movie.find({ isFavorite: true });
 
@@ -88,7 +88,7 @@ router.get('/movies/favorites/all', auth, async (req, res, next) => {
     }
 });
 
-router.delete('/movies/:movieId', auth, async (req, res, next) => {
+router.delete('/movies/:movieId', async (req, res, next) => {
     const id = new ObjectId(req.params.movieId);
     await req.models.Movie.deleteOne({ _id: id });
 
