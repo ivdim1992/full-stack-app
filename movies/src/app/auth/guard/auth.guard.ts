@@ -13,7 +13,7 @@ export class AuthGuardService implements CanActivate {
       take(1),
       switchMap((user) => {
         if (user) {
-          this.router.navigate(['home']);
+          this.router.navigate(['movies']);
           return of(false);
         }
         return of(true);

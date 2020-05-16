@@ -1,0 +1,37 @@
+@import 'abstracts/colors';
+
+.sidenav-container {
+  height: 100%;
+  width: 100px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background-color: $light-blue;
+}
+ul {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+  height: 80px;
+  text-align: center;
+}
+
+mat-icon {
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.active {
+  color: $text-color;
+  background-color: $primary-color;
+}
+
+.logo {
+  color: map-get($mvp-pink, 600);
+}

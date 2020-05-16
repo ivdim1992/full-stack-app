@@ -5,7 +5,21 @@ import { NgModule } from '@angular/core';
 export const routes: Routes = [
   {
     path: '',
-    component: HomeLayoutComponent
+    component: HomeLayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'list'
+      },
+      {
+        path: 'list',
+        loadChildren: () => import('./movies/movies.module').then((m) => m.MoviesModule)
+      },
+      {
+        path: 'favorites',
+        loadChildren: () => import('./favorites/favorites.module').then((m) => m.FavoritesModule)
+      }
+    ]
   }
 ];
 
