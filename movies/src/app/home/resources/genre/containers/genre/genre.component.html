@@ -1,0 +1,15 @@
+<div class="genres-container">
+  <div class="title">MOVIES</div>
+  <hr />
+
+  <ul class="genres margin-t-xl">
+    <li
+      class="item cursor-pointer"
+      *ngFor="let genre of genres; let i = index"
+      (click)="onSelect(genre, i)"
+      [ngClass]="{ selected: currentIndex === i }"
+    >
+      {{ genre }}
+    </li>
+  </ul>
+</div>

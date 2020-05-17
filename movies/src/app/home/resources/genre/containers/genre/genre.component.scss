@@ -1,0 +1,34 @@
+@import 'abstracts/colors';
+
+.genres-container {
+  height: 100%;
+  width: 200px;
+  position: absolute;
+  left: 100px;
+  top: 80px;
+  background-color: $dark-blue;
+  z-index: 10;
+}
+
+.title {
+  font-size: 20px;
+  padding: 20px 35px;
+  color: $light;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+}
+
+hr {
+  margin: 0;
+}
+
+li {
+  list-style-type: none;
+  margin-bottom: 20px;
+  color: $genres;
+}
+
+.selected {
+  color: #0d7aa4;
+  font-weight: bold;
+}

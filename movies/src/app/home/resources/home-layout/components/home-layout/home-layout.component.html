@@ -1,5 +1,6 @@
 <app-side-nav></app-side-nav>
 <app-header [user]="user$ | async" (signOutSelected)="onSignOut()"></app-header>
+<app-genre (selectedGenre)="onSelectGenre($event)"></app-genre>
 
 <div class="movies-container">
   <router-outlet></router-outlet>

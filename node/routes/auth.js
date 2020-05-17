@@ -9,7 +9,7 @@ router.post('/auth/register', async (req, res, next) => {
         const token = await user.generateAuthToken();
         user.token = token;
         await user.save();
-        res.status(201).send({ user });
+        res.status(201).send({ message: ' Successfully registered' });
     } catch (error) {
         if (error.code === 11000) {
             res.status(400).send({ message: 'The user already exist!' });
@@ -21,8 +21,8 @@ router.post('/auth/register', async (req, res, next) => {
 
 router.post('/auth/login', async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const user = await User.findByCredentials(email, password);
+        const { email } = req.body;
+        const user = await User.findOne({ email }).select('-password');
         if (!user) {
             return res
                 .status(401)

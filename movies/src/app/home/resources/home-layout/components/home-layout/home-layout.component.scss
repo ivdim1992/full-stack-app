@@ -1,3 +1,7 @@
+@import 'abstracts/colors';
+
 .movies-container {
-  padding-left: 100px;
+  padding-left: 300px;
+  background-color: $light-blue;
+  height: 100%;
 }
