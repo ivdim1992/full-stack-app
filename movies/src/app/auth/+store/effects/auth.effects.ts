@@ -32,11 +32,32 @@ export class AuthEffects {
     )
   );
 
+  public readonly signOutUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.signOut),
+      switchMap((_) =>
+        this.authService.signOut().pipe(
+          map(({ message }) => AuthActions.signOutSuccess({ message })),
+          catchError((error) => of(AuthActions.signOutFailure({ error })))
+        )
+      )
+    )
+  );
+
+  public readonly signOutSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.signOutSuccess),
+        tap((_) => this.router.navigate(['auth', 'sign-in']))
+      ),
+    { dispatch: false }
+  );
+
   public readonly signInSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(AuthActions.signInUserSuccess),
-        tap((_) => this.router.navigate(['home']))
+        tap((_) => this.router.navigate(['movies']))
       ),
     { dispatch: false }
   );

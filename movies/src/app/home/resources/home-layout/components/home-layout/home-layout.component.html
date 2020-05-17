@@ -1,4 +1,5 @@
 <app-side-nav></app-side-nav>
+<app-header [user]="user$ | async" (signOutSelected)="onSignOut()"></app-header>
 
 <div class="movies-container">
   <router-outlet></router-outlet>

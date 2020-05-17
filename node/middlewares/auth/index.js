@@ -33,7 +33,7 @@ const auth = async (req, res, next) => {
             throw new Error('Something went wrong');
         }
         req.user = user;
-        req.token = token;
+        req.user.token = token;
         next();
     } catch (error) {
         res.status(401).send({

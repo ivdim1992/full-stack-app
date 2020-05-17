@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private isWhitelisted(url: string): boolean {
     const urlClass = new Url(url);
 
-    return this.whiteListURL.some((el) => el === urlClass.host);
+    return this.whiteListURL.some((el) => el === urlClass.href);
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler) {
@@ -28,7 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return this.authStoreFacade.user$.pipe(
       first(),
-      switchMap((user) => {
+      switchMap(({ user }) => {
         req = req.clone({
           setHeaders: {
             Authorization: `Bearer ${user.token}`

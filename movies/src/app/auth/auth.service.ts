@@ -24,7 +24,7 @@ export class AuthService {
     return this.http.post<IUser>(`${this.baseURL}/auth/register`, body);
   }
 
-  public logout(data = null): Observable<null> {
-    return this.http.post<null>(`${this.baseURL}/auth/logout`, data);
+  public signOut(data = null): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.baseURL}/auth/logout`, data);
   }
 }

@@ -24,7 +24,8 @@ export const authReducer = createReducer(
     produce(state, (baseState) => {
       baseState.user = action.user;
     })
-  )
+  ),
+  on(AuthActions.signOutSuccess, () => initialState)
 );
 
 export function reducer(state: AuthState | undefined, action: Action) {

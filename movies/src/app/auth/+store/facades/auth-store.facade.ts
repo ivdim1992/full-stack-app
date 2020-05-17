@@ -19,4 +19,8 @@ export class AuthStoreFacade {
   public register(data: IAuth) {
     this.store.dispatch(AuthActions.registerUser({ data }));
   }
+
+  public signOut() {
+    this.store.dispatch(AuthActions.signOut());
+  }
 }

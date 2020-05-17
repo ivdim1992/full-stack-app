@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, FlexLayoutModule, RouterModule],
-  exports: [FormsModule, ReactiveFormsModule, FlexLayoutModule, RouterModule],
+  exports: [FormsModule, ReactiveFormsModule, FlexLayoutModule, RouterModule, CommonModule],
   providers: [
     { provide: GLOBAL_SETTINGS, useValue: Settings },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

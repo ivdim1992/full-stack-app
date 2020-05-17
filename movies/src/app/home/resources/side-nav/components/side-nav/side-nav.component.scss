@@ -24,14 +24,17 @@ li {
 mat-icon {
   font-size: 28px;
   width: 28px;
+  color: $icon-color;
   height: 28px;
 }
 
 .active {
-  color: $text-color;
+  mat-icon {
+    color: $text-color;
+  }
   background-color: $primary-color;
 }
 
-.logo {
-  color: map-get($mvp-pink, 600);
+.logo mat-icon {
+  color: $primary-color;
 }

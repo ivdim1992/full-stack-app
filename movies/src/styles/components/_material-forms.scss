@@ -1,0 +1,22 @@
+@import 'abstracts/colors';
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: $text-color;
+}
+
+.mat-input-element {
+  background: transparent;
+}
+
+.mat-form-field-label {
+  color: $text-color;
+}
+
+.mat-focused {
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: $text-color;
+  }
+}
+
+.mat-input-element {
+  caret-color: $text-color;
+}

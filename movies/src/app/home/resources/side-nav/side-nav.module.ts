@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SideNavComponent } from './components';
 import { MatIconModule } from '@angular/material/icon';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { SharedModule } from 'src/app/shared';
 
 @NgModule({
   declarations: [SideNavComponent],
-  imports: [CommonModule, MatIconModule, FlexLayoutModule],
+  imports: [MatIconModule, SharedModule],
   exports: [SideNavComponent]
 })
 export class SideNavModule {}
