@@ -1,0 +1,50 @@
+@import 'abstracts/colors';
+
+.tmd-success-snackbar {
+  .mat-icon {
+    color: rgb(12, 150, 12);
+  }
+  .message {
+    color: rgba($light, 0.8);
+    font-size: 14px;
+  }
+  .close {
+    margin-right: 7px;
+  }
+}
+
+.tmd-info-snackbar {
+  .message {
+    color: rgba($light, 0.8);
+    font-size: 14px;
+  }
+  .close {
+    margin-right: 7px;
+  }
+}
+
+.tmd-danger-snackbar.mat-snack-bar-container {
+  background-color: #f91a14;
+
+  .mat-icon {
+    color: $light;
+  }
+  .message {
+    color: $light;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .close {
+    color: rgba($light, 0.6);
+    margin-right: 7px;
+  }
+}
+
+.mat-snack-bar-container {
+  width: 588px;
+  max-width: 588px;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  background-color: map-get($mvp-gray, 900);
+  .mat-simple-snackbar {
+  }
+}

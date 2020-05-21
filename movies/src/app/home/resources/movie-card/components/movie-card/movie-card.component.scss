@@ -1,0 +1,50 @@
+@import 'abstracts/colors';
+
+.movie-card {
+  .show-more {
+    position: relative;
+  }
+
+  .image-container {
+    img {
+      max-width: 160px;
+    }
+  }
+
+  .title {
+    color: $light;
+  }
+
+  .movie-details {
+    position: absolute;
+    z-index: 2;
+    background-color: red;
+    top: 0;
+    left: 100%;
+    padding: 22px;
+
+    background: blueviolet;
+
+    .additional-title {
+      color: $light;
+      font-size: 20px;
+    }
+
+    .year,
+    .genres,
+    .pipe {
+      color: $light;
+      font-size: 14px;
+    }
+
+    .description {
+      font-size: 13px;
+      color: $light;
+    }
+  }
+
+  .year {
+    color: $genres;
+    font-size: 15px;
+  }
+}

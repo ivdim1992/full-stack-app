@@ -21,12 +21,7 @@ const MovieSchema = new mongoose.Schema({
         type: Boolean,
         required: false,
     },
-    genre: [
-        {
-            type: String,
-            required: true,
-        },
-    ],
+    genres: Array,
 });
 
 const Movie = mongoose.model('Movie', MovieSchema);

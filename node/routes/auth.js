@@ -12,7 +12,7 @@ router.post('/auth/register', async (req, res, next) => {
         res.status(201).send({ message: ' Successfully registered' });
     } catch (error) {
         if (error.code === 11000) {
-            res.status(400).send({ message: 'The user already exist!' });
+            res.status(400).send('The user already exist!');
             return;
         }
         res.status(400).send(error);
@@ -24,9 +24,7 @@ router.post('/auth/login', async (req, res) => {
         const { email } = req.body;
         const user = await User.findOne({ email }).select('-password');
         if (!user) {
-            return res
-                .status(401)
-                .send({ error: 'Login failed! Check credentials' });
+            return res.status(401).send('Login failed! Check credentials');
         }
         const token = await user.generateAuthToken();
         user.token = token;

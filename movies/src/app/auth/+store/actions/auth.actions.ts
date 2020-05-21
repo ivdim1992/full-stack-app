@@ -11,7 +11,7 @@ export const signOut = createAction('[Authentication Module] Sign Out User');
 // Success
 export const registerUserSuccess = createAction(
   '[Authentication Module] Register User Success',
-  props<{ user: IUser }>()
+  props<{ message: string }>()
 );
 
 export const signInUserSuccess = createAction('[Authentication Module] Sign In User Success', props<{ user: IUser }>());
@@ -24,15 +24,15 @@ export const signOutSuccess = createAction(
 // Failure
 export const registerUserFailure = createAction(
   '[Authentication Module] Register User Failure',
-  props<{ error: { message: string } }>()
+  props<{ error: { error: string } }>()
 );
 
 export const signInUserFailure = createAction(
   '[Authentication Module] Sign In User Failure',
-  props<{ error: { message: string } }>()
+  props<{ error: { error: string } }>()
 );
 
 export const signOutFailure = createAction(
   '[Authentication Module] Sign Out User Failure',
-  props<{ error: { message: string } }>()
+  props<{ error: { error: string } }>()
 );

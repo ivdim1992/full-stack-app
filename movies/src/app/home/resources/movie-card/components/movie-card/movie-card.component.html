@@ -1,0 +1,18 @@
+<div class="movie-card margin-b-xl">
+  <div class="show-more" fxLayout="row">
+    <div class="image-container" (mouseover)="mouseOvered = true" (mouseout)="mouseOvered = false">
+      <img class="poster" src="{{ movie.poster }}" alt="movie-avatar" />
+      <div *ngIf="mouseOvered" class="movie-details" fxLayout="column">
+        <span class="block additional-title bold margin-b-md">{{ movie.title }}</span>
+        <div class="additional-movie-details margin-b-md" fxLayout="row">
+          <span class="block year">{{ movie.year }}</span>
+          <span class="block pipe margin-r-md margin-l-md">|</span>
+          <span class="genres genres">{{ movie.genres.join(', ').toUpperCase() }}</span>
+        </div>
+        <span class="description block">{{ movie.description.slice(0, 350) }}</span>
+      </div>
+    </div>
+  </div>
+  <span class="block title bold margin-b-md">{{ movie.title }}</span>
+  <span class="year block">{{ movie.year }}</span>
+</div>

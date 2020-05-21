@@ -1,7 +1,6 @@
 const express = require('express');
 const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
-const auth = require('../middlewares/auth/index');
 const Movie = require('../middlewares/db/models/Movie');
 
 router.get('/movies', async (req, res, next) => {

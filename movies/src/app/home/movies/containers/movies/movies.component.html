@@ -1,1 +1,3 @@
-<div *ngFor="let movie of movies$ | async">{{ movie.genre }}</div>
+<div *ngFor="let movie of movies$ | async">
+  <app-movie-card [movie]="movie" fxLayout="row"> </app-movie-card>
+</div>

@@ -20,8 +20,8 @@ export class AuthService {
     return this.http.post<IUser>(`${this.baseURL}/auth/login`, body);
   }
 
-  public register(body: IAuth): Observable<IUser> {
-    return this.http.post<IUser>(`${this.baseURL}/auth/register`, body);
+  public register(body: IAuth): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.baseURL}/auth/register`, body);
   }
 
   public signOut(data = null): Observable<{ message: string }> {

@@ -30,8 +30,9 @@ module.exports = {
         app.use(helmet());
         app.use(cors(corsOptions));
 
-        app.use(bodyParser.urlencoded({ extended: true }));
         app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({ extended: false }));
+
         app.use(db);
         app.use(allowCrossDomain);
 

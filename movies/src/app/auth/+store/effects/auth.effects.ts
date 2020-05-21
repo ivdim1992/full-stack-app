@@ -5,6 +5,8 @@ import { AuthService } from '../../auth.service';
 import { AuthActions } from '../actions';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
+import { SnackBarService } from 'src/app/shared/services/snackbar.service';
+import { SnackTypes, SnackBarIconTypes } from 'src/app/shared/enums';
 
 @Injectable()
 export class AuthEffects {
@@ -13,7 +15,7 @@ export class AuthEffects {
       ofType(AuthActions.registerUser),
       switchMap(({ data }) =>
         this.authService.register(data).pipe(
-          map((user) => AuthActions.registerUserSuccess({ user })),
+          map(({ message }) => AuthActions.registerUserSuccess({ message })),
           catchError((error) => of(AuthActions.registerUserFailure({ error })))
         )
       )
@@ -44,11 +46,44 @@ export class AuthEffects {
     )
   );
 
+  public readonly showSnackbar$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.signInUserFailure, AuthActions.registerUserFailure),
+        tap((value: { error: { error: string } }) => {
+          this.snackbarService.open({
+            message: value.error.error,
+            action: 'X',
+            type: SnackTypes.ERROR,
+            icon: SnackBarIconTypes.ERROR
+          });
+        })
+      ),
+    { dispatch: false }
+  );
+
   public readonly signOutSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(AuthActions.signOutSuccess),
         tap((_) => this.router.navigate(['auth', 'sign-in']))
+      ),
+    { dispatch: false }
+  );
+
+  public readonly registerSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.registerUserSuccess),
+        tap((value: { message: string }) => {
+          this.snackbarService.open({
+            message: value.message,
+            action: 'X',
+            type: SnackTypes.SUCCESS,
+            icon: SnackBarIconTypes.SUCCESS
+          });
+          this.router.navigate(['auth', 'sign-in']);
+        })
       ),
     { dispatch: false }
   );
@@ -65,6 +100,7 @@ export class AuthEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly snackbarService: SnackBarService
   ) {}
 }

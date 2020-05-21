@@ -5,5 +5,5 @@ export interface IMovie {
   poster: string;
   year: number;
   isFavorite: boolean;
-  genre: string[];
+  genres: string[];
 }

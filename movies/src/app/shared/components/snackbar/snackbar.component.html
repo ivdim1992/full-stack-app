@@ -1,0 +1,7 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" class="snack-container">
+  <div fxLayoutAlign="flex-start center">
+    <mat-icon *ngIf="data.icon">{{ getIcon }}</mat-icon>
+    <div class="message margin-l-md">{{ data.message }}</div>
+  </div>
+  <div (click)="close()" class="cursor-pointer message close">{{ data.action }}</div>
+</div>

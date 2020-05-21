@@ -20,7 +20,7 @@ export interface State extends fromRoot.State {
 
 export const authReducer = createReducer(
   initialState,
-  on(AuthActions.signInUserSuccess, AuthActions.registerUserSuccess, (state, action) =>
+  on(AuthActions.signInUserSuccess, (state, action) =>
     produce(state, (baseState) => {
       baseState.user = action.user;
     })
