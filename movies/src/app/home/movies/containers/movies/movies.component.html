@@ -1,3 +1,3 @@
 <div *ngFor="let movie of movies$ | async">
-  <app-movie-card [movie]="movie" fxLayout="row"> </app-movie-card>
+  <app-movie-card [movie]="movie" fxLayout="row" (viewDetailsSelected)="onViewDetails($event)"> </app-movie-card>
 </div>

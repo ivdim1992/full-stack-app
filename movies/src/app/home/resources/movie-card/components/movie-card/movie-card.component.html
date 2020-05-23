@@ -1,18 +1,17 @@
-<div class="movie-card margin-b-xl">
-  <div class="show-more" fxLayout="row">
-    <div class="image-container" (mouseover)="mouseOvered = true" (mouseout)="mouseOvered = false">
+<div class="container margin-b-xl" fxLayout="column" fxLayoutAlign="space-between center">
+  <div class="movie-card">
+    <div class="movie-header">
       <img class="poster" src="{{ movie.poster }}" alt="movie-avatar" />
-      <div *ngIf="mouseOvered" class="movie-details" fxLayout="column">
-        <span class="block additional-title bold margin-b-md">{{ movie.title }}</span>
-        <div class="additional-movie-details margin-b-md" fxLayout="row">
-          <span class="block year">{{ movie.year }}</span>
-          <span class="block pipe margin-r-md margin-l-md">|</span>
-          <span class="genres genres">{{ movie.genres.join(', ').toUpperCase() }}</span>
-        </div>
-        <span class="description block">{{ movie.description.slice(0, 350) }}</span>
+    </div>
+    <div class="movie-content">
+      <span class="block title bold margin-b-md">{{ movie.title }}</span>
+      <div class="movie-info margin-t-lg" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="year">{{ movie.year }}</span>
+        <span class="genres">{{ movie.genres.join(', ').toUpperCase() }}</span>
       </div>
     </div>
   </div>
-  <span class="block title bold margin-b-md">{{ movie.title }}</span>
-  <span class="year block">{{ movie.year }}</span>
+  <button mat-stroked-button color="primary" class="view-details" (click)="onViewDetails(movie._id)">
+    View Details
+  </button>
 </div>

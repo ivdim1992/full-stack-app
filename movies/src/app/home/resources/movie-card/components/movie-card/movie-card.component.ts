@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { IMovie } from 'src/app/shared/interfaces';
 
 @Component({
@@ -7,10 +7,11 @@ import { IMovie } from 'src/app/shared/interfaces';
   styleUrls: ['./movie-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MovieCardComponent implements OnInit {
+export class MovieCardComponent {
   @Input() public movie: IMovie;
-  public mouseOvered: boolean;
-  constructor() {}
+  @Output() public viewDetailsSelected = new EventEmitter<string>();
 
-  public ngOnInit(): void {}
+  public onViewDetails(movieId: string) {
+    this.viewDetailsSelected.emit(movieId);
+  }
 }

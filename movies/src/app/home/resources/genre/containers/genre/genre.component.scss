@@ -31,3 +31,14 @@ li {
   color: #0d7aa4;
   font-weight: bold;
 }
+
+.add-button {
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  margin-left: 50px;
+}
+
+.add-button:hover {
+  background-color: $primary-color;
+  color: $light;
+}

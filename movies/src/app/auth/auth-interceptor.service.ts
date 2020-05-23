@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private isWhitelisted(url: string): boolean {
     const urlClass = new Url(url);
 
-    return this.whiteListURL.some((el) => el === urlClass.href);
+    return this.whiteListURL.some((el) => el !== urlClass.href);
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler) {

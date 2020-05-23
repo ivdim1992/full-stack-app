@@ -1,0 +1,25 @@
+<ng-container *ngIf="movie$ | async as movie">
+  <div class="movie-details-container" fxLayout="row">
+    <div class="poster margin-r-lg">
+      <img src="{{ movie.poster }}" alt="poster" />
+    </div>
+    <div class="details" fxLayout="column">
+      <label for=".title" class="margin-b-sm">Title:</label>
+      <span class="title block margin-b-lg">{{ movie.title }}</span>
+      <label for=".year" class="margin-b-sm">Year:</label>
+      <span class="block year margin-b-lg">{{ movie.year }}</span>
+      <label for=".genres" class="margin-b-sm">Genres:</label>
+      <span class="block genres margin-b-lg">{{ movie.genres.join(', ') }}</span>
+      <label for=".description" class="margin-b-sm">Description:</label>
+      <span class="block description">{{ movie.description }}</span>
+      <div class="actions margin-t-lg">
+        <button mat-stroked-button class="margin-r-lg" (click)="onEdit(movie._id)">
+          Edit Movie
+        </button>
+        <button mat-stroked-button (click)="onDelete(movie.title, movie._id)">
+          Delete Movie
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>

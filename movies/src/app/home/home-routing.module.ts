@@ -18,6 +18,14 @@ export const routes: Routes = [
       {
         path: 'favorites',
         loadChildren: () => import('./favorites/favorites.module').then((m) => m.FavoritesModule)
+      },
+      {
+        path: 'details',
+        loadChildren: () => import('./movie-details/movie-details.module').then((m) => m.MovieDetailsModule)
+      },
+      {
+        path: 'add',
+        loadChildren: () => import('./add-movie/add-movie.module').then((m) => m.AddMovieModule)
       }
     ]
   }

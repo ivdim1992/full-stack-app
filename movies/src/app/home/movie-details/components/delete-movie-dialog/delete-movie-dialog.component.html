@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="description">Are you sure you want to delete {{ data }} movie?</div>
+  <div class="actions margin-t-lg">
+    <button mat-stroked-button (click)="onCancel()">
+      No
+    </button>
+    <button mat-stroked-button class="margin-l-lg" [mat-dialog-close]="data">
+      Yes
+    </button>
+  </div>
+</div>

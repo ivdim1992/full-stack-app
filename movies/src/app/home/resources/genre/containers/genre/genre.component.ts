@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-genre',
@@ -22,8 +23,14 @@ export class GenreComponent {
     'Horror'
   ];
 
+  constructor(private readonly router: Router) {}
+
   public onSelect(genre: string, index: number) {
     this.currentIndex = index;
     this.selectedGenre.emit(genre);
+  }
+
+  public onAddMovie() {
+    this.router.navigate(['movies', 'add']);
   }
 }
