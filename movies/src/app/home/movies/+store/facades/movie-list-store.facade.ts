@@ -11,10 +11,14 @@ export class MovieListStoreFacade {
 
   public getMoviesSuccess = this.actions$.pipe(ofType(MovieListActions.getMoviesSuccess));
 
-  public movies$ = this.store.pipe(select(MovieListSelectors.movies));
+  public movies$ = this.store.pipe(select(MovieListSelectors.selectAllMovies));
 
   public getMovies() {
     this.store.dispatch(MovieListActions.getMovies());
+  }
+
+  public setOrRemoveMovieIntoFavorites(movieId: string, setOrRemove: boolean) {
+    this.store.dispatch(MovieListActions.setOrRemoveFavoriteMovie({ movieId, setOrRemove }));
   }
 
   public clear() {

@@ -1,8 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IMovie } from 'src/app/shared/interfaces';
 import { GlobalSettings, GLOBAL_SETTINGS } from 'src/app/shared/tokens';
+import { IFavoriteMovie } from 'src/app/shared/interfaces/favorite-movie.interface';
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
@@ -34,5 +35,14 @@ export class MoviesService {
 
   public deleteMovie(movieId: string): Observable<null> {
     return this.http.delete<null>(`${this.baseURL}/movies/${movieId}`);
+  }
+
+  public setOrRemoveFromFavorites(movieId: string, setOrRemove: boolean): Observable<IFavoriteMovie> {
+    let params = new HttpParams();
+    params = params.set('isFavorite', setOrRemove.toString());
+
+    return this.http.post<IFavoriteMovie>(`${this.baseURL}/movies/${movieId}/favorites`, null, {
+      params
+    });
   }
 }

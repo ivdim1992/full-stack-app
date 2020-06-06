@@ -1,0 +1,29 @@
+@import 'abstracts/colors';
+
+:host {
+  padding: 60px;
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+
+  .title {
+    font-size: 20px;
+    padding-bottom: 35px;
+    color: #feffff;
+    font-weight: 500;
+  }
+
+  .createMovieBtn {
+    display: block;
+    width: 50%;
+    border: 1px solid #fe0f70;
+    color: #fe0f70;
+    margin: 0 auto;
+    transition: ease-in-out 0.3s;
+  }
+
+  .createMovieBtn:hover {
+    background-color: $primary-color;
+    color: $light;
+  }
+}

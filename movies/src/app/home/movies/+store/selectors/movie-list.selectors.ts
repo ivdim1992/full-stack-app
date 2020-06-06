@@ -1,7 +1,20 @@
-import { createSelector, createFeatureSelector } from '@ngrx/store';
-import * as fromMovieLIstReducer from '../reducers';
-import { movieListKey } from '../reducers';
+import { createSelector } from '@ngrx/store';
+import { fromMoviesReducer, getMovieListState } from '../reducers';
+import { MovieListActions } from '../actions';
+import { take } from 'rxjs/operators';
 
-export const selectFeature = createFeatureSelector<fromMovieLIstReducer.MovieListStore>(movieListKey);
+const getMovieListEntities = createSelector(getMovieListState, (state) => state.movies);
 
-export const movies = createSelector(selectFeature, (state) => state.movies);
+const {
+  selectIds: getMovieListIds,
+  selectEntities: getMoviesEntities,
+  selectAll: selectAllMovies,
+  selectTotal: selectTotalMovies
+} = fromMoviesReducer.adapter.getSelectors(getMovieListEntities);
+
+export const MovieListSelectors = {
+  getMovieListIds,
+  getMoviesEntities,
+  selectAllMovies,
+  selectTotalMovies
+};

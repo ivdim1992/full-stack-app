@@ -61,16 +61,12 @@ router.put('/movies/:movieId', async (req, res, next) => {
 
 router.post('/movies/:movieId/favorites', async (req, res, next) => {
     try {
-        const id = new ObjectId(req.params.movieId);
+        const id = req.params.movieId;
 
         await req.models.Movie.updateOne({ _id: id }, req.query);
-
+        const movie = await Movie.findById({ _id: id });
         res.status(200).setHeader('Content-Type', 'application/json');
-        return res.end(
-            JSON.stringify(
-                Object.assign({}, req.query, { _id: req.params.movieId })
-            )
-        );
+        return res.send(movie);
     } catch (err) {
         throw new Error('Something went wrong');
     }

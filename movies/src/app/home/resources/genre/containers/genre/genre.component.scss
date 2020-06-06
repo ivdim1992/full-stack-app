@@ -36,6 +36,7 @@ li {
   border: 1px solid $primary-color;
   color: $primary-color;
   margin-left: 50px;
+  transition: ease-in-out 0.3s;
 }
 
 .add-button:hover {

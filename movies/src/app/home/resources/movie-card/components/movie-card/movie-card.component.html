@@ -6,6 +6,12 @@
     <div class="movie-content">
       <span class="block title bold margin-b-md">{{ movie.title }}</span>
       <div class="movie-info margin-t-lg" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="block" *ngIf="!movie.isFavorite">
+          <mat-icon (click)="onSelectFavoriteIcon(movie._id)" class="cursor-pointer">favorite_border</mat-icon>
+        </span>
+        <span class="block" *ngIf="movie.isFavorite">
+          <mat-icon (click)="onSelectFavoriteIcon(movie._id)" class="cursor-pointer">favorite</mat-icon>
+        </span>
         <span class="year">{{ movie.year }}</span>
         <span class="genres">{{ movie.genres.join(', ').toUpperCase() }}</span>
       </div>

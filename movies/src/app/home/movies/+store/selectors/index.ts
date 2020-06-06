@@ -1,2 +1,1 @@
-import * as MovieListSelectors from './movie-list.selectors';
-export { MovieListSelectors };
+export * from './movie-list.selectors';

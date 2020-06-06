@@ -43,10 +43,19 @@
   }
 
   .year,
-  .genres {
-    color: $genres;
+  .genres,
+  mat-icon {
+    color: #c1d2c3;
     font-size: 15px;
   }
+
+  mat-icon {
+    font-size: 20px;
+  }
+}
+
+.active {
+  display: none;
 }
 
 .movie-card:hover {

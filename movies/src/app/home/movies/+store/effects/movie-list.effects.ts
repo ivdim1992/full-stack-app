@@ -19,5 +19,17 @@ export class MovieListEffects {
     )
   );
 
+  public readonly setOrRemoveMovieIntoFavorites$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MovieListActions.setOrRemoveFavoriteMovie),
+      switchMap(({ movieId, setOrRemove }) =>
+        this.moviesService.setOrRemoveFromFavorites(movieId, setOrRemove).pipe(
+          map((favoriteMovie) => MovieListActions.setOrRemoveFavoriteMovieSuccess({ favoriteMovie })),
+          catchError((error) => of(MovieListActions.setOrRemoveFavoriteMovieFailure({ error })))
+        )
+      )
+    )
+  );
+
   constructor(private readonly actions$: Actions, private readonly moviesService: MoviesService) {}
 }
