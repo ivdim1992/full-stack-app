@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { MovieListStoreFacade } from '../../+store/facades';
 import { Router } from '@angular/router';
 
@@ -8,16 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./movies.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MoviesComponent implements OnInit, OnDestroy {
+export class MoviesComponent implements OnDestroy {
   public movies$ = this.movieListStoreFacade.movies$;
 
-  constructor(
-    private readonly movieListStoreFacade: MovieListStoreFacade,
-    private readonly router: Router,
-    private readonly cd: ChangeDetectorRef
-  ) {}
-
-  ngOnInit(): void {}
+  constructor(private readonly movieListStoreFacade: MovieListStoreFacade, private readonly router: Router) {}
 
   public onViewDetails(movieId: string) {
     this.router.navigate(['movies', 'details', movieId]);

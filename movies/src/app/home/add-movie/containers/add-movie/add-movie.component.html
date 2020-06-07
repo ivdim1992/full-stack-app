@@ -1,25 +1,4 @@
 <div class="create-movie form">
   <span class="block title">Create Movie</span>
-  <form [formGroup]="movieForm" (ngSubmit)="onSubmit(movieForm.value)" fxLayout="column">
-    <mat-form-field appearance="outline">
-      <mat-label>Title</mat-label>
-      <input matInput placeholder="title" formControlName="title" autocomplete="on" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Year</mat-label>
-      <input matInput placeholder="year" formControlName="year" autocomplete="on" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>URL Avatar</mat-label>
-      <input matInput placeholder="URL Avatar" formControlName="avatar" autocomplete="on" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
-      <input matInput placeholder="Description" formControlName="description" autocomplete="on" />
-    </mat-form-field>
-    <button mat-stroked-button color="Primary" class="createMovieBtn">Create</button>
-  </form>
+  <app-movie-form [options]="options" (movieFormEmitter)="onSubmit($event)"></app-movie-form>
 </div>

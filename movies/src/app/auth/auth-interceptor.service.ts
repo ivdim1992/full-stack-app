@@ -1,6 +1,5 @@
 import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
-import { AuthService } from './auth.service';
 import Url from 'url-parse';
 import { GLOBAL_SETTINGS, GlobalSettings } from '../shared/tokens';
 import { switchMap, catchError, first } from 'rxjs/operators';
@@ -23,6 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return this.whiteListURL.some((el) => el !== urlClass.href);
   }
 
+  // tslint:disable-next-line: no-any
   public intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (!this.isWhitelisted(req.url)) return next.handle(req);
 

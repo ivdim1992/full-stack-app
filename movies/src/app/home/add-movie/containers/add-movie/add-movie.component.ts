@@ -1,26 +1,47 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { IMovieOutput } from '../../interfaces';
+import { MovieFormComponent, ICreateMovieForm } from 'src/app/home/resources/movie-form/components';
+import { CreateMovieStoreFacade } from '../../+store/facades';
+import { GenresEnum } from 'src/app/shared/enums';
+import { produce } from 'immer';
 
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
-  styleUrls: ['./add-movie.component.scss']
+  styleUrls: ['./add-movie.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddMovieComponent implements OnInit {
-  public movieForm: FormGroup;
+  public options: string[] = [];
 
-  constructor(private readonly formBuilder: FormBuilder) {}
+  constructor(private readonly createMovieStoreFacade: CreateMovieStoreFacade) {}
+
+  @ViewChild(MovieFormComponent) public movieFormComp: MovieFormComponent;
 
   public ngOnInit() {
-    this.movieForm = this.formBuilder.group({
-      title: this.formBuilder.control('', [Validators.required]),
-      year: this.formBuilder.control('', [Validators.required]),
-      avatar: this.formBuilder.control('', [Validators.required]),
-      description: this.formBuilder.control('', [Validators.required])
-    });
+    this.options = Array.of(
+      GenresEnum.ACTION,
+      GenresEnum.COMEDY,
+      GenresEnum.DRAMA,
+      GenresEnum.HORROR,
+      GenresEnum.FANTASY
+    );
   }
 
-  public onSubmit(form) {
-    console.log(form);
+  public onSubmit(movieForm: ICreateMovieForm) {
+    const movieOutput = this.buildMovieOutput(movieForm);
+    this.createMovieStoreFacade.createMovie(movieOutput);
+  }
+
+  public buildMovieOutput(movieForm: ICreateMovieForm): IMovieOutput {
+    const output = produce<IMovieOutput>(movieForm, (baseState) => {
+      (baseState.description = movieForm.description),
+        (baseState.genres = movieForm.genres),
+        (baseState.poster = movieForm.poster),
+        (baseState.title = movieForm.title),
+        (baseState.year = movieForm.year);
+    });
+
+    return output;
   }
 }

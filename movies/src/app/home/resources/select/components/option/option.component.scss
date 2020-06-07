@@ -1,0 +1,20 @@
+@import 'abstracts/colors';
+
+.item {
+  width: 168px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  background-color: transparent;
+  text-align: center;
+  padding: 9px 0;
+  color: $primary-color;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.selected {
+  background-color: $primary-color;
+  transition: 0.3s ease;
+  border: 1px solid transparent;
+  color: $light;
+}

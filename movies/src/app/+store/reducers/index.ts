@@ -10,6 +10,7 @@ export interface State {
   router: fromRouter.RouterReducerState;
 }
 
+// tslint:disable-next-line: no-any
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
   return localStorageSync({ keys: ['auth'], rehydrate: true })(reducer);
 }

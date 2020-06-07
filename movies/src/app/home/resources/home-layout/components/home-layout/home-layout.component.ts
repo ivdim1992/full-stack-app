@@ -16,5 +16,7 @@ export class HomeLayoutComponent {
     this.authStoreFacade.signOut();
   }
 
-  public onSelectGenre(genre: string) {}
+  public onSelectGenre(genre: string) {
+    return true;
+  }
 }

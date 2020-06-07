@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IRegisterForm } from '../../components';
 import { AuthStoreFacade } from '../../+store/facades';
 
@@ -8,10 +8,8 @@ import { AuthStoreFacade } from '../../+store/facades';
   styleUrls: ['./register.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   constructor(private readonly authStoreFacade: AuthStoreFacade) {}
-
-  ngOnInit(): void {}
 
   public onSubmitRegisterForm(values: IRegisterForm) {
     this.authStoreFacade.register(values);

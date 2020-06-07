@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { IUser } from 'src/app/shared/interfaces';
 
 @Component({
@@ -7,11 +7,10 @@ import { IUser } from 'src/app/shared/interfaces';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() public user: IUser;
 
   @Output() public signOutSelected = new EventEmitter();
-  ngOnInit(): void {}
 
   public onSignOut() {
     this.signOutSelected.emit();

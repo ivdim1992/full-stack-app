@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MovieDetailsStoreFacade } from '../../+store/facades';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteMovieDialogComponent } from '../../components';
@@ -10,14 +10,14 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./movie-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MovieDetailsComponent implements OnInit {
+export class MovieDetailsComponent {
   public movie$ = this.movieDetailsStoreFacade.movie$;
 
   constructor(private readonly movieDetailsStoreFacade: MovieDetailsStoreFacade, private readonly dialog: MatDialog) {}
 
-  ngOnInit(): void {}
-
-  public onEdit(movieId: string) {}
+  public onEdit(movieId: string) {
+    return true;
+  }
 
   public onDelete(title: string, movieId: string) {
     this.dialog

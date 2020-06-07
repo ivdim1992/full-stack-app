@@ -1,7 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { fromMoviesReducer, getMovieListState } from '../reducers';
-import { MovieListActions } from '../actions';
-import { take } from 'rxjs/operators';
 
 const getMovieListEntities = createSelector(getMovieListState, (state) => state.movies);
 

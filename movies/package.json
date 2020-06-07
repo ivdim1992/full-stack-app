@@ -10,7 +10,9 @@
     "e2e": "ng e2e"
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "pre-commit": "ng lint"
+    }
   },
   "private": true,
   "dependencies": {

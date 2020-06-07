@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
 import { SnackbarComponent } from './components';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [SnackbarComponent],

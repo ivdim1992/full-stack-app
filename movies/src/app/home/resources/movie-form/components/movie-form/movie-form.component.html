@@ -1,0 +1,30 @@
+<form [formGroup]="movieForm" (ngSubmit)="onSubmit(movieForm)" fxLayout="column">
+  <mat-form-field appearance="outline">
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="title" formControlName="title" autocomplete="on" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Year</mat-label>
+    <input matInput placeholder="year" formControlName="year" />
+    <mat-error *ngIf="movieForm.get('year').hasError('pattern')">
+      Only digits allowed!
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>URL Avatar</mat-label>
+    <input matInput placeholder="URL Avatar" formControlName="poster" autocomplete="on" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Description" formControlName="description" autocomplete="on" />
+  </mat-form-field>
+
+  <span class="block margin-b-md">Genres</span>
+  <app-select formControlName="genres">
+    <app-option *ngFor="let option of options" [value]="option">{{ option }}</app-option>
+  </app-select>
+  <button mat-stroked-button color="Primary" [class.disabled]="!movieForm.valid" class="createMovieBtn">Create</button>
+</form>

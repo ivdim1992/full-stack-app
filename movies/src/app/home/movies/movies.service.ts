@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { IMovie } from 'src/app/shared/interfaces';
 import { GlobalSettings, GLOBAL_SETTINGS } from 'src/app/shared/tokens';
 import { IFavoriteMovie } from 'src/app/shared/interfaces/favorite-movie.interface';
+import { IMovieOutput } from '../add-movie/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
@@ -25,11 +26,11 @@ export class MoviesService {
     return this.http.get<IMovie>(`${this.baseURL}/movies/${movieId}`);
   }
 
-  public createMovie(movieOutput: any, movieId: string): Observable<IMovie> {
-    return this.http.post<IMovie>(`${this.baseURL}/movies/${movieId}`, movieOutput);
+  public createMovie(movieOutput: IMovieOutput): Observable<IMovie> {
+    return this.http.post<IMovie>(`${this.baseURL}/movies`, movieOutput);
   }
 
-  public updateMovie(movieOutput: any, movieId: string): Observable<IMovie> {
+  public updateMovie(movieOutput: IMovieOutput, movieId: string): Observable<IMovie> {
     return this.http.put<IMovie>(`${this.baseURL}/movies/${movieId}`, movieOutput);
   }
 

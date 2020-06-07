@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ISignInForm } from '../../components';
 import { AuthStoreFacade } from '../../+store/facades';
 
@@ -8,10 +8,8 @@ import { AuthStoreFacade } from '../../+store/facades';
   styleUrls: ['./sign-in.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent {
   constructor(private readonly authStoreFacade: AuthStoreFacade) {}
-
-  public ngOnInit(): void {}
 
   public onSubmitSignIn(values: ISignInForm) {
     this.authStoreFacade.signIn(values);
