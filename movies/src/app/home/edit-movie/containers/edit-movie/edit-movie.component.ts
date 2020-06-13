@@ -1,24 +1,23 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { IMovieOutput } from '../../interfaces';
-import { MovieFormComponent, IMovieForm } from 'src/app/home/resources/movie-form/components';
-import { CreateMovieStoreFacade } from '../../+store/facades';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { EditMovieStoreFacade } from '../../+store/facades';
 import { GenresEnum } from 'src/app/shared/enums';
+import { IMovieForm } from 'src/app/home/resources/movie-form/components';
+import { IMovieOutput } from '../../interfaces';
 import { produce } from 'immer';
 
 @Component({
-  selector: 'app-add-movie',
-  templateUrl: './add-movie.component.html',
-  styleUrls: ['./add-movie.component.scss'],
+  selector: 'app-edit-movie',
+  templateUrl: './edit-movie.component.html',
+  styleUrls: ['./edit-movie.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AddMovieComponent implements OnInit {
+export class EditMovieComponent implements OnInit {
+  public movie$ = this.editMovieStoreFacade.movie$;
   public options: string[] = [];
 
-  constructor(private readonly createMovieStoreFacade: CreateMovieStoreFacade) {}
+  constructor(private readonly editMovieStoreFacade: EditMovieStoreFacade) {}
 
-  @ViewChild(MovieFormComponent) public movieFormComp: MovieFormComponent;
-
-  public ngOnInit() {
+  ngOnInit() {
     this.options = Array.of(
       GenresEnum.ACTION,
       GenresEnum.COMEDY,
@@ -28,9 +27,9 @@ export class AddMovieComponent implements OnInit {
     );
   }
 
-  public onSubmit(movieForm: IMovieForm) {
+  public onSubmit(movieForm: IMovieForm, movieId: string) {
     const movieOutput = this.buildMovieOutput(movieForm);
-    this.createMovieStoreFacade.createMovie(movieOutput);
+    this.editMovieStoreFacade.updateMovie(movieId, movieOutput);
   }
 
   public buildMovieOutput(movieForm: IMovieForm): IMovieOutput {

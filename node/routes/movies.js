@@ -2,7 +2,8 @@ const express = require('express');
 const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 const Movie = require('../middlewares/db/models/Movie');
-const User = router.get('/movies', async (req, res, next) => {
+
+router.get('/movies', async (req, res, next) => {
     try {
         const movies = await Movie.find({ creator: req.user.id });
 
@@ -99,10 +100,20 @@ router.get('/movies/favorites/all', async (req, res, next) => {
 });
 
 router.delete('/movies/:movieId', async (req, res, next) => {
-    const id = new ObjectId(req.params.movieId);
-    await req.models.Movie.deleteOne({ _id: id });
+    try {
+        const id = req.params.movieId;
+        await req.models.Movie.deleteOne({ _id: id });
+        const index = req.user.movies.indexOf(id);
 
-    res.status(200).setHeader('Content-Type', 'application/json');
-    return res.end();
+        if (index > -1) {
+            req.user.movies.splice(index, 1);
+            req.user.save();
+        }
+
+        res.status(200).setHeader('Content-Type', 'application/json');
+        return res.end();
+    } catch (err) {
+        throw new Error('Something went wrong');
+    }
 });
 module.exports = router;

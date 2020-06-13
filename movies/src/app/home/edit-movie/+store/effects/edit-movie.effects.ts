@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { MovieDetailsActions } from '../actions';
+import { EditMovieActions } from '../actions';
 import { switchMap, catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MoviesService } from 'src/app/home/movies/movies.service';
@@ -9,26 +9,26 @@ import { SnackBarService } from 'src/app/shared/services/snackbar.service';
 import { SnackTypes, SnackBarIconTypes } from 'src/app/shared/enums';
 
 @Injectable()
-export class MovieDetailsEffects {
+export class EditMovieEffects {
   public readonly getMovie$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MovieDetailsActions.getMovie),
+      ofType(EditMovieActions.getMovie),
       switchMap(({ movieId }) =>
         this.moviesService.getMovie(movieId).pipe(
-          map((movie) => MovieDetailsActions.getMovieSuccess({ movie })),
-          catchError((error) => of(MovieDetailsActions.getMovieFailure({ error })))
+          map((movie) => EditMovieActions.getMovieSuccess({ movie })),
+          catchError((error) => of(EditMovieActions.getMovieFailure({ error })))
         )
       )
     )
   );
 
-  public readonly deleteMovie$ = createEffect(() =>
+  public readonly updateMovie$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(MovieDetailsActions.deleteMovie),
-      switchMap(({ movieId }) =>
-        this.moviesService.deleteMovie(movieId).pipe(
-          map((_) => MovieDetailsActions.deleteMovieSuccess()),
-          catchError((error) => of(MovieDetailsActions.deleteMovieFailure({ error })))
+      ofType(EditMovieActions.updateMovie),
+      switchMap(({ movie, movieId }) =>
+        this.moviesService.updateMovie(movie, movieId).pipe(
+          map((resMovie) => EditMovieActions.updateMovieSuccess({ movie: resMovie })),
+          catchError((error) => of(EditMovieActions.updateMovieFailure({ error })))
         )
       )
     )
@@ -37,10 +37,10 @@ export class MovieDetailsEffects {
   public navigateToMoviesList$ = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(MovieDetailsActions.deleteMovieSuccess),
+        ofType(EditMovieActions.updateMovieSuccess),
         tap((_) => {
           this.snackbarService.open({
-            message: 'Deleted successfully',
+            message: 'Updated successfully',
             action: 'X',
             type: SnackTypes.SUCCESS,
             icon: SnackBarIconTypes.SUCCESS

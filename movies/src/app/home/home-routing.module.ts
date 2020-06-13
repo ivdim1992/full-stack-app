@@ -26,6 +26,10 @@ export const routes: Routes = [
       {
         path: 'add',
         loadChildren: () => import('./add-movie/add-movie.module').then((m) => m.AddMovieModule)
+      },
+      {
+        path: 'edit',
+        loadChildren: () => import('./edit-movie/edit-movie.module').then((m) => m.EditMovieModule)
       }
     ]
   }

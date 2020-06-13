@@ -12,8 +12,8 @@
         <span class="block" *ngIf="movie.isFavorite">
           <mat-icon (click)="onSelectFavoriteIcon(movie._id)" class="cursor-pointer">favorite</mat-icon>
         </span>
-        <span class="year">{{ movie.year }}</span>
-        <span class="genres">{{ movie.genres.join(', ').toUpperCase() }}</span>
+        <span class="year block">{{ movie.year }}</span>
+        <span class="genres block">{{ movie.genres.join(', ').toUpperCase() }}</span>
       </div>
     </div>
   </div>

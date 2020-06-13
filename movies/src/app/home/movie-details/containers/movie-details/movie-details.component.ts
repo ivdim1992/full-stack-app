@@ -3,6 +3,7 @@ import { MovieDetailsStoreFacade } from '../../+store/facades';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteMovieDialogComponent } from '../../components';
 import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-details',
@@ -13,10 +14,14 @@ import { take } from 'rxjs/operators';
 export class MovieDetailsComponent {
   public movie$ = this.movieDetailsStoreFacade.movie$;
 
-  constructor(private readonly movieDetailsStoreFacade: MovieDetailsStoreFacade, private readonly dialog: MatDialog) {}
+  constructor(
+    private readonly movieDetailsStoreFacade: MovieDetailsStoreFacade,
+    private readonly dialog: MatDialog,
+    private readonly router: Router
+  ) {}
 
   public onEdit(movieId: string) {
-    return true;
+    this.router.navigate(['movies', 'edit', movieId]);
   }
 
   public onDelete(title: string, movieId: string) {

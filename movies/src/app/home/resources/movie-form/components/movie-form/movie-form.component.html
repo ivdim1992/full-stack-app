@@ -26,5 +26,7 @@
   <app-select formControlName="genres">
     <app-option *ngFor="let option of options" [value]="option">{{ option }}</app-option>
   </app-select>
-  <button mat-stroked-button color="Primary" [class.disabled]="!movieForm.valid" class="createMovieBtn">Create</button>
+  <button mat-stroked-button color="Primary" [class.disabled]="!movieForm.valid" class="createMovieBtn">
+    {{ buttonTitle }}
+  </button>
 </form>

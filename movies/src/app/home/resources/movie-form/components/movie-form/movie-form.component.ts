@@ -8,8 +8,9 @@ import {
   Input
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { IMovieInput } from 'src/app/home/add-movie/interfaces';
 
-export interface ICreateMovieForm {
+export interface IMovieForm {
   title: string;
   year: number;
   poster: string;
@@ -25,18 +26,36 @@ export interface ICreateMovieForm {
 })
 export class MovieFormComponent implements OnInit {
   public movieForm: FormGroup;
-  @Input() options: string[] = [];
-  @Output() public movieFormEmitter = new EventEmitter<ICreateMovieForm>();
+  public _movie: IMovieInput;
+  @Input() public buttonTitle: string;
+
+  @Input() public options: string[] = [];
+  @Input() public set movie(movie) {
+    if (!movie) return;
+    this._movie = movie;
+  }
+  public get movie() {
+    return this._movie;
+  }
+
+  @Output() public movieFormEmitter = new EventEmitter<IMovieForm>();
 
   constructor(private readonly formBuilder: FormBuilder, private readonly cd: ChangeDetectorRef) {}
 
   public ngOnInit() {
+    this.buildForm(this.movie);
+  }
+
+  public buildForm(incomingMovie?: IMovieInput) {
     this.movieForm = this.formBuilder.group({
-      title: this.formBuilder.control('', [Validators.required]),
-      year: this.formBuilder.control('', [Validators.required, Validators.pattern(`[0-9]+`)]),
-      poster: this.formBuilder.control('', [Validators.required]),
-      description: this.formBuilder.control('', [Validators.required]),
-      genres: [null, Validators.required]
+      title: this.formBuilder.control(incomingMovie ? incomingMovie.title : '', [Validators.required]),
+      year: this.formBuilder.control(incomingMovie ? incomingMovie.year : '', [
+        Validators.required,
+        Validators.pattern(`[0-9]+`)
+      ]),
+      poster: this.formBuilder.control(incomingMovie ? incomingMovie.poster : '', [Validators.required]),
+      description: this.formBuilder.control(incomingMovie ? incomingMovie.description : '', [Validators.required]),
+      genres: [incomingMovie ? incomingMovie.genres : '', Validators.required]
     });
   }
 
