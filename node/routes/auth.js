@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../middlewares/db/models/User');
+const Movie = require('../middlewares/db/models/Movie');
 const auth = require('../middlewares/auth/index');
 
 router.post('/auth/register', async (req, res, next) => {

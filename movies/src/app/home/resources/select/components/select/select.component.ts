@@ -72,22 +72,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor, AfterViewI
         }
       });
     }
-    // if (Array.isArray(this.value)) {
-    //   const mapOfValues = this.value.reduce((acc, value) => acc.set(value, true), new Map());
-    //   this.optionGroups.forEach((el) => {
-    //     if (mapOfValues.has(el.value)) {
-    //       el.select(el.value, false);
-    //       this.selectionModel.select(el);
-    //     }
-    //   });
-    // } else {
-    //   this.optionGroups.forEach((el) => {
-    //     if (el.value === this.value) {
-    //       el.select(el.value, false);
-    //       this.selectionModel.select(el);
-    //     }
-    //   });
-    // }
 
     const eventEmitters = this.optionGroups.map((item) => item.emittedValues);
     this.subscription = merge(...eventEmitters).subscribe((option: IOptionSelectedValue) => {

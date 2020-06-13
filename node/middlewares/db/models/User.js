@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
-const saltRounds = 10;
+const SALT_ROUNDS = 10;
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -37,13 +37,14 @@ const UserSchema = new mongoose.Schema({
         type: Number,
         required: false,
     },
+    movies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }],
 });
 
 UserSchema.pre('save', async function (next) {
     // Hash the password before saving the user model
     const user = this;
     if (user.isModified('password')) {
-        user.password = await bcrypt.hash(user.password, saltRounds);
+        user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
     }
     next();
 });

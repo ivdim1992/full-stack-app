@@ -22,6 +22,7 @@ const MovieSchema = new mongoose.Schema({
         required: false,
     },
     genres: Array,
+    creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 });
 
 const Movie = mongoose.model('Movie', MovieSchema);
