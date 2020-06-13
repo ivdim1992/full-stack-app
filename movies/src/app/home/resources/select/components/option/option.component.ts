@@ -30,9 +30,9 @@ export class OptionComponent {
       this.emittedValues.emit({ option: this, value });
     }
 
-    // setTimeout(() => {
-    //   this.cd.markForCheck();
-    // }, 0);
+    setTimeout(() => {
+      this.cd.markForCheck();
+    }, 0);
   }
 
   public deselect(emitEvent: boolean): void {
@@ -41,8 +41,8 @@ export class OptionComponent {
       this.emittedValues.emit({ option: this, value: this.value });
     }
 
-    // setTimeout(() => {
-    //   this.cd.markForCheck();
-    // }, 0);
+    setTimeout(() => {
+      this.cd.markForCheck();
+    }, 0);
   }
 }

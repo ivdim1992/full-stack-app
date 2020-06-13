@@ -1,0 +1,11 @@
+<ng-container *ngIf="movie$ | async as movie">
+  <div class="edit-movie form">
+    <span class="block title">Edit Movie</span>
+    <app-movie-form
+      [options]="options"
+      buttonTitle="Edit Movie"
+      (movieFormEmitter)="onSubmit($event, movie._id)"
+      [movie]="movie"
+    ></app-movie-form>
+  </div>
+</ng-container>

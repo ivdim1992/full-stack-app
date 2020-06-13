@@ -16,7 +16,7 @@ export const getMovieFailure = createAction(
   props<{ error: { message: string } }>()
 );
 
-export const DeleteMovieFailure = createAction(
+export const deleteMovieFailure = createAction(
   '[Movie Details Module] Delete Movie Failure',
   props<{ error: { message: string } }>()
 );
