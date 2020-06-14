@@ -5,6 +5,7 @@ import { IMovie } from 'src/app/shared/interfaces';
 import { GlobalSettings, GLOBAL_SETTINGS } from 'src/app/shared/tokens';
 import { IFavoriteMovie } from 'src/app/shared/interfaces/favorite-movie.interface';
 import { IMovieOutput } from '../add-movie/interfaces';
+import { IFavoriteMovieInput } from '../favorites/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {
@@ -36,6 +37,10 @@ export class MoviesService {
 
   public deleteMovie(movieId: string): Observable<null> {
     return this.http.delete<null>(`${this.baseURL}/movies/${movieId}`);
+  }
+
+  public getFavoriteMovies(): Observable<IFavoriteMovieInput[]> {
+    return this.http.get<IFavoriteMovieInput[]>(`${this.baseURL}/movies/favorites/all`);
   }
 
   public setOrRemoveFromFavorites(movieId: string, setOrRemove: boolean): Observable<IFavoriteMovie> {
