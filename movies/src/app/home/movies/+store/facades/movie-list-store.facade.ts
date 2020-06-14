@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
-import { MovieListActions } from '../actions';
+import { MovieListActions, SelectedGenreActions } from '../actions';
 import { Store, select } from '@ngrx/store';
 import * as fromMovieListReducer from '../reducers';
 import { MovieListSelectors } from '../selectors';
@@ -11,10 +11,18 @@ export class MovieListStoreFacade {
 
   public getMoviesSuccess = this.actions$.pipe(ofType(MovieListActions.getMoviesSuccess));
 
-  public movies$ = this.store.pipe(select(MovieListSelectors.selectAllMovies));
+  public movies$ = this.store.pipe(select(MovieListSelectors.getFilteredMovies));
 
   public getMovies() {
     this.store.dispatch(MovieListActions.getMovies());
+  }
+
+  public selectedGenre(id: string, genre: string) {
+    this.store.dispatch(SelectedGenreActions.select({ id, genre }));
+  }
+
+  public deselectedGenre() {
+    this.store.dispatch(SelectedGenreActions.deselect());
   }
 
   public setOrRemoveMovieIntoFavorites(movieId: string, setOrRemove: boolean) {

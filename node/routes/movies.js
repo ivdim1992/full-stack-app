@@ -11,7 +11,7 @@ router.get('/movies', async (req, res, next) => {
 
         return res.end(JSON.stringify(movies));
     } catch (err) {
-        throw new Error('Something went wrong');
+        next(err);
     }
 });
 
@@ -40,7 +40,7 @@ router.post('/movies', async (req, res, next) => {
                 return res.end(JSON.stringify(movie));
             });
     } catch (err) {
-        throw new Error('Something went wrong');
+        next(err);
     }
 });
 
@@ -52,7 +52,7 @@ router.get('/movies/:movieId', async (req, res, next) => {
         res.status(200).setHeader('Content-Type', 'application/json');
         return res.end(JSON.stringify(movie));
     } catch (err) {
-        throw new Error('Something went wrong');
+        next(err);
     }
 });
 
@@ -68,7 +68,7 @@ router.put('/movies/:movieId', async (req, res, next) => {
             )
         );
     } catch (err) {
-        throw new Error('Something went wrong');
+        next(err);
     }
 });
 
@@ -81,7 +81,7 @@ router.post('/movies/:movieId/favorites', async (req, res, next) => {
         res.status(200).setHeader('Content-Type', 'application/json');
         return res.send(movie);
     } catch (err) {
-        throw new Error('Something went wrong');
+        next(err);
     }
 });
 
@@ -95,7 +95,7 @@ router.get('/movies/favorites/all', async (req, res, next) => {
         res.status(200).setHeader('Content-Type', 'application/json');
         return res.end(JSON.stringify(favoriteMovies));
     } catch (err) {
-        throw new Error('Something went wrong');
+        next(err);
     }
 });
 
@@ -113,7 +113,7 @@ router.delete('/movies/:movieId', async (req, res, next) => {
         res.status(200).setHeader('Content-Type', 'application/json');
         return res.end();
     } catch (err) {
-        throw new Error('Something went wrong');
+        next(err);
     }
 });
 module.exports = router;

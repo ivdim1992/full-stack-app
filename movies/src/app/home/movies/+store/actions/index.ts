@@ -1,2 +1,3 @@
 import * as MovieListActions from './movie-list.actions';
-export { MovieListActions };
+import * as SelectedGenreActions from './selected-genre.actions';
+export { MovieListActions, SelectedGenreActions };

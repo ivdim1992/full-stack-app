@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GenreComponent {
-  @Output() public selectedGenre = new EventEmitter<string>();
+  @Output() public selectedGenre = new EventEmitter<{ id: string; genre: string }>();
+  @Output() public clearSelection = new EventEmitter();
+
   public currentIndex: number;
 
   public genres: string[] = [
@@ -27,10 +29,15 @@ export class GenreComponent {
 
   public onSelect(genre: string, index: number) {
     this.currentIndex = index;
-    this.selectedGenre.emit(genre);
+    this.selectedGenre.emit({ id: this.currentIndex.toString(), genre });
   }
 
   public onAddMovie() {
     this.router.navigate(['movies', 'add']);
+  }
+
+  public onClearSelection() {
+    this.currentIndex = -1;
+    this.clearSelection.emit();
   }
 }
