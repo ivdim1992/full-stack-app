@@ -1,5 +1,4 @@
 const express = require('express');
-const ObjectId = require('mongodb').ObjectId;
 const router = express.Router();
 const Movie = require('../middlewares/db/models/Movie');
 
@@ -116,4 +115,5 @@ router.delete('/movies/:movieId', async (req, res, next) => {
         next(err);
     }
 });
+
 module.exports = router;

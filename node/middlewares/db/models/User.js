@@ -23,7 +23,6 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        select: false,
     },
     firstName: {
         type: String,
@@ -59,6 +58,10 @@ UserSchema.methods.generateAuthToken = async function () {
     await user.save();
     return token;
 };
+
+UserSchema.method('doesPasswordsMatch', function (password) {
+    return bcrypt.compare(password, this.password);
+});
 
 UserSchema.statics.findByCredentials = async (email, password) => {
     // Search for a user by email and password.

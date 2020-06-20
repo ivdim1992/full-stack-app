@@ -50,9 +50,9 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.signInUserFailure, AuthActions.registerUserFailure),
-        tap((value: { error: { error: string } }) => {
+        tap((error: { error: { error: string } }) => {
           this.snackbarService.open({
-            message: value.error.error,
+            message: error.error.error,
             action: 'X',
             type: SnackTypes.ERROR,
             icon: SnackBarIconTypes.ERROR
