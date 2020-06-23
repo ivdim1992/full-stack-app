@@ -33,7 +33,6 @@ export const mergeRouteData = (route: ActivatedRouteSnapshot): Data => {
 };
 
 export class CustomRouterSerializer implements RouterStateSerializer<ISerializedRouterState> {
-  debugger;
   public serialize(routerState: RouterStateSnapshot): ISerializedRouterState {
     return {
       url: routerState.url || '/',

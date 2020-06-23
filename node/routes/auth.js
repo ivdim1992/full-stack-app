@@ -12,7 +12,7 @@ router.post('/auth/register', async (req, res, next) => {
         res.status(201).send({ message: ' Successfully registered' });
     } catch (error) {
         if (error.code === 11000) {
-            res.status(400).send('The user already exist!');
+            res.status(400).send({ message: 'The user already exist!' });
             return;
         }
         res.status(400).send(error);
@@ -25,13 +25,17 @@ router.post('/auth/login', async (req, res, next) => {
         let user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(401).send('Login failed! Check credentials');
+            return res
+                .status(400)
+                .send({ message: 'Login failed! Check credentials' });
         }
 
         const doesPasswordMatch = await user.doesPasswordsMatch(password);
 
         if (!doesPasswordMatch) {
-            return res.status(401).send('Login failed! Check credentials');
+            return res
+                .status(400)
+                .send({ message: 'Login failed! Check credentials' });
         }
 
         user = await User.findOne({ email }).select('-password');
@@ -40,7 +44,7 @@ router.post('/auth/login', async (req, res, next) => {
         user.token = token;
         res.send({ user });
     } catch (error) {
-        res.status(400).send(error);
+        next(error);
     }
 });
 

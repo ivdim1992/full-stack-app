@@ -24,12 +24,12 @@ export const signOutSuccess = createAction(
 // Failure
 export const registerUserFailure = createAction(
   '[Authentication Module] Register User Failure',
-  props<{ error: { error: string } }>()
+  props<{ message: string }>()
 );
 
 export const signInUserFailure = createAction(
   '[Authentication Module] Sign In User Failure',
-  props<{ error: { error: string } }>()
+  props<{ message: string }>()
 );
 
 export const signOutFailure = createAction(

@@ -16,7 +16,7 @@ export class AuthEffects {
       switchMap(({ data }) =>
         this.authService.register(data).pipe(
           map(({ message }) => AuthActions.registerUserSuccess({ message })),
-          catchError((error) => of(AuthActions.registerUserFailure({ error })))
+          catchError((error) => of(AuthActions.registerUserFailure({ message: error.error.message })))
         )
       )
     )
@@ -28,7 +28,7 @@ export class AuthEffects {
       switchMap(({ data }) =>
         this.authService.signIn(data).pipe(
           map((user) => AuthActions.signInUserSuccess({ user })),
-          catchError((error) => of(AuthActions.signInUserFailure({ error })))
+          catchError((error) => of(AuthActions.signInUserFailure({ message: error.error.message })))
         )
       )
     )
@@ -50,9 +50,9 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.signInUserFailure, AuthActions.registerUserFailure),
-        tap((error: { error: { error: string } }) => {
+        tap(({ message }) => {
           this.snackbarService.open({
-            message: error.error.error,
+            message,
             action: 'X',
             type: SnackTypes.ERROR,
             icon: SnackBarIconTypes.ERROR
