@@ -3,5 +3,10 @@ export enum GenresEnum {
   DRAMA = 'Drama',
   ACTION = 'Action',
   HORROR = 'Horror',
-  FANTASY = 'Fantasy'
+  FANTASY = 'Fantasy',
+  ADVENTURE = 'Adventure',
+  ANIMATION = 'Animation',
+  CRIME = 'Crime',
+  FAMILY = 'Family',
+  MYSTERY = 'Mystery'
 }

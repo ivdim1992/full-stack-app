@@ -18,6 +18,9 @@
     <mat-error *ngIf="registerForm.get('password').hasError('required')">
       Password is required!
     </mat-error>
+    <mat-error *ngIf="registerForm.get('password').hasError('minlength')">
+      Minimum 6 character!
+    </mat-error>
   </mat-form-field>
 
   <div class="redirect-register margin-t-md" fxLayout="row" fxLayoutAlign="space-between center">

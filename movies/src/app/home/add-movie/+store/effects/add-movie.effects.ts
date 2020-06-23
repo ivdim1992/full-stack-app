@@ -2,13 +2,15 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CreateMovieActions } from '../actions';
 import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { MoviesService } from 'src/app/home/movies/movies.service';
-import { of } from 'rxjs';
 import { SnackBarService } from 'src/app/shared/services/snackbar.service';
 import { SnackTypes, SnackBarIconTypes } from 'src/app/shared/enums';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class CreateMovieEffects {
-  public readonly getMovie$ = createEffect(() =>
+  public readonly createMovie$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CreateMovieActions.createMovie),
       switchMap(({ movieOutput }) =>
@@ -20,7 +22,7 @@ export class CreateMovieEffects {
     )
   );
 
-  public navigateToMoviesList$ = createEffect(
+  public readonly navigateToMoviesList$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(CreateMovieActions.createMovieSuccess),

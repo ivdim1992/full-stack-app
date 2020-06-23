@@ -24,7 +24,12 @@ export class AddMovieComponent implements OnInit {
       GenresEnum.COMEDY,
       GenresEnum.DRAMA,
       GenresEnum.HORROR,
-      GenresEnum.FANTASY
+      GenresEnum.FANTASY,
+      GenresEnum.ADVENTURE,
+      GenresEnum.ANIMATION,
+      GenresEnum.CRIME,
+      GenresEnum.FAMILY,
+      GenresEnum.MYSTERY
     );
   }
 

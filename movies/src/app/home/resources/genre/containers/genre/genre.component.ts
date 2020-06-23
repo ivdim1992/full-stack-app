@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { GenresEnum } from 'src/app/shared/enums';
 
 @Component({
   selector: 'app-genre',
@@ -13,17 +14,18 @@ export class GenreComponent {
 
   public currentIndex: number;
 
-  public genres: string[] = [
-    'Action',
-    'Adventure',
-    'Animation',
-    'Comedy',
-    'Crime',
-    'Drama',
-    'Family',
-    'Fantasy',
-    'Horror'
-  ];
+  public genres: string[] = Array.of(
+    GenresEnum.ACTION,
+    GenresEnum.COMEDY,
+    GenresEnum.DRAMA,
+    GenresEnum.HORROR,
+    GenresEnum.FANTASY,
+    GenresEnum.ADVENTURE,
+    GenresEnum.ANIMATION,
+    GenresEnum.CRIME,
+    GenresEnum.FAMILY,
+    GenresEnum.MYSTERY
+  );
 
   constructor(private readonly router: Router) {}
 

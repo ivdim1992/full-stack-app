@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../middlewares/db/models/User');
-const Movie = require('../middlewares/db/models/Movie');
 const auth = require('../middlewares/auth/index');
 
 router.post('/auth/register', async (req, res, next) => {
@@ -13,31 +12,43 @@ router.post('/auth/register', async (req, res, next) => {
         res.status(201).send({ message: ' Successfully registered' });
     } catch (error) {
         if (error.code === 11000) {
-            res.status(400).send('The user already exist!');
+            res.status(400).send({ message: 'The user already exist!' });
             return;
         }
         res.status(400).send(error);
     }
 });
 
-router.post('/auth/login', async (req, res) => {
+router.post('/auth/login', async (req, res, next) => {
     try {
-        const { email } = req.body;
-        const user = await User.findOne({ email }).select('-password');
+        const { email, password } = req.body;
+        let user = await User.findOne({ email });
+
         if (!user) {
-            return res.status(401).send('Login failed! Check credentials');
+            return res
+                .status(400)
+                .send({ message: 'Login failed! Check credentials' });
         }
+
+        const doesPasswordMatch = await user.doesPasswordsMatch(password);
+
+        if (!doesPasswordMatch) {
+            return res
+                .status(400)
+                .send({ message: 'Login failed! Check credentials' });
+        }
+
+        user = await User.findOne({ email }).select('-password');
+
         const token = await user.generateAuthToken();
         user.token = token;
-        await user.save();
         res.send({ user });
     } catch (error) {
-        res.status(400).send(error);
+        next(error);
     }
 });
 
 router.post('/auth/logout', auth, async (req, res) => {
-    // Log user out of all devices
     try {
         req.user.token = '';
         await req.user.save();
@@ -47,4 +58,5 @@ router.post('/auth/logout', auth, async (req, res) => {
         res.status(500).send(error);
     }
 });
+
 module.exports = router;

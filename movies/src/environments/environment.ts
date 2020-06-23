@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  whiteListedHosts: ['http://localhost:2020/api/register', 'http://localhost:2020/api/auth/sign-in'],
+  whiteListedHosts: ['http://localhost:2020/api/register', 'http://localhost:2020/api/auth/login'],
   api: {
     baseURL: 'http://localhost:2020/api'
   }
