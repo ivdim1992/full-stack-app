@@ -9,7 +9,7 @@ router.post('/auth/register', async (req, res, next) => {
         const token = await user.generateAuthToken();
         user.token = token;
         await user.save();
-        res.status(201).send({ message: ' Successfully registered' });
+        res.status(201).send({ message: 'Successfully registered' });
     } catch (error) {
         if (error.code === 11000) {
             res.status(400).send({ message: 'The user already exist!' });
@@ -42,7 +42,7 @@ router.post('/auth/login', async (req, res, next) => {
 
         const token = await user.generateAuthToken();
         user.token = token;
-        res.send({ user });
+        res.send(user);
     } catch (error) {
         next(error);
     }
