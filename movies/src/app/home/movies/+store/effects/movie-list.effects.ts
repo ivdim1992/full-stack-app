@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { MovieListActions } from '../actions';
 import { switchMap, catchError, map } from 'rxjs/operators';
-import { MoviesService } from '../../movies.service';
 import { of } from 'rxjs';
+import { MoviesService } from '../../movies.service';
 
 @Injectable()
 export class MovieListEffects {

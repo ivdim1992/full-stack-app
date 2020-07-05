@@ -2,10 +2,10 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { IMovie } from 'src/app/shared/interfaces';
-import { GlobalSettings, GLOBAL_SETTINGS } from 'src/app/shared/tokens';
 import { IFavoriteMovie } from 'src/app/shared/interfaces/favorite-movie.interface';
 import { IMovieOutput } from '../add-movie/interfaces';
 import { IFavoriteMovieInput } from '../favorites/interfaces';
+import { GLOBAL_SETTINGS, GlobalSettings } from '@app/shared/tokens';
 
 @Injectable({ providedIn: 'root' })
 export class MoviesService {

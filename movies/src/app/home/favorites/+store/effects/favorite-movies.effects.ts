@@ -3,7 +3,7 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { FavoriteMoviesActions } from '../actions';
 import { switchMap, catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { MoviesService } from 'src/app/home/movies/movies.service';
+import { MoviesService } from '@app/home/movies/movies.service';
 
 @Injectable()
 export class FavoriteMoviesEffects {
