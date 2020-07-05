@@ -8,6 +8,7 @@
     "test": "jest --no-cache",
     "lint": "ng lint",
     "test:watch": "jest --watch",
+    "test:ci": "jest -ci --runInBand",
     "e2e": "ng e2e"
   },
   "husky": {
@@ -35,6 +36,7 @@
     "@ngrx/store-devtools": "^9.1.0",
     "@types/jest": "^26.0.3",
     "immer": "^6.0.3",
+    "jasmine-marbles": "^0.6.0",
     "ng-http-loader": "^7.0.0",
     "ngrx-store-localstorage": "^9.0.0",
     "ngrx-store-logger": "^0.2.4",

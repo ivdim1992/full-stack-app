@@ -28,7 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return this.authStoreFacade.user$.pipe(
       first(),
-      switchMap(({ user }) => {
+      switchMap((user) => {
         req = req.clone({
           setHeaders: {
             Authorization: `Bearer ${user.token}`

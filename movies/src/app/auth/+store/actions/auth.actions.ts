@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IAuth, IUser } from 'src/app/shared/interfaces';
+import { HttpErrorResponse } from '@angular/common/http';
 
 // API
 export const registerUser = createAction('[Authentication Module] Register User', props<{ data: IAuth }>());
@@ -24,15 +25,15 @@ export const signOutSuccess = createAction(
 // Failure
 export const registerUserFailure = createAction(
   '[Authentication Module] Register User Failure',
-  props<{ message: string }>()
+  props<{ error: HttpErrorResponse }>()
 );
 
 export const signInUserFailure = createAction(
   '[Authentication Module] Sign In User Failure',
-  props<{ message: string }>()
+  props<{ error: HttpErrorResponse }>()
 );
 
 export const signOutFailure = createAction(
   '[Authentication Module] Sign Out User Failure',
-  props<{ error: { error: string } }>()
+  props<{ error: HttpErrorResponse }>()
 );

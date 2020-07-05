@@ -3,10 +3,10 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { MovieDetailsActions } from '../actions';
 import { switchMap, catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { MoviesService } from 'src/app/home/movies/movies.service';
 import { Router } from '@angular/router';
-import { SnackBarService } from 'src/app/shared/services/snackbar.service';
-import { SnackTypes, SnackBarIconTypes } from 'src/app/shared/enums';
+import { MoviesService } from '@app/home/movies/movies.service';
+import { SnackBarService } from '@app/shared/services';
+import { SnackBarIconTypes, SnackTypes } from '@app/shared/enums';
 
 @Injectable()
 export class MovieDetailsEffects {
