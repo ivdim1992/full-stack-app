@@ -40,7 +40,6 @@ describe('Auth Service', () => {
 
     authService.register(data).subscribe((result) => {
       expect(result.message).toEqual(resp.message);
-      console.log(result);
       done();
     });
 
@@ -55,7 +54,6 @@ describe('Auth Service', () => {
 
     authService.signOut().subscribe((result) => {
       expect(result.message).toEqual(resp.message);
-      console.log(result);
       done();
     });
 

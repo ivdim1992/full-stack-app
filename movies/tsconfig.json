@@ -15,7 +15,9 @@
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
     "paths": {
-      "@env/*": ["src/environments/*"]
+      "@env/*": ["src/environments/*"],
+      "@app/*": ["src/app/*"],
+      "@shared/*": ["src/app/shared/*"]
     },
     "target": "es2015",
     "types": ["reflect-metadata", "jest", "node"],

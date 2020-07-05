@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { switchMap, map, catchError, tap } from 'rxjs/operators';
+import { map, catchError, tap, exhaustMap } from 'rxjs/operators';
 import { AuthService } from '../../auth.service';
 import { AuthActions } from '../actions';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
-import { SnackBarService } from 'src/app/shared/services/snackbar.service';
-import { SnackTypes, SnackBarIconTypes } from 'src/app/shared/enums';
+import { SnackBarService } from '@app/shared/services';
+import { SnackTypes, SnackBarIconTypes } from '@app/shared/enums';
 
 @Injectable()
 export class AuthEffects {
   public readonly registerUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.registerUser),
-      switchMap(({ data }) =>
+      exhaustMap(({ data }) =>
         this.authService.register(data).pipe(
           map(({ message }) => AuthActions.registerUserSuccess({ message })),
-          catchError((error) => of(AuthActions.registerUserFailure({ message: error.error.message })))
+          catchError((error) => of(AuthActions.registerUserFailure({ error })))
         )
       )
     )
@@ -25,10 +25,10 @@ export class AuthEffects {
   public readonly signInUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signInUser),
-      switchMap(({ data }) =>
+      exhaustMap(({ data }) =>
         this.authService.signIn(data).pipe(
           map((user) => AuthActions.signInUserSuccess({ user })),
-          catchError((error) => of(AuthActions.signInUserFailure({ message: error.error.message })))
+          catchError((error) => of(AuthActions.signInUserFailure({ error })))
         )
       )
     )
@@ -37,7 +37,7 @@ export class AuthEffects {
   public readonly signOutUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signOut),
-      switchMap((_) =>
+      exhaustMap((_) =>
         this.authService.signOut().pipe(
           map(({ message }) => AuthActions.signOutSuccess({ message })),
           catchError((error) => of(AuthActions.signOutFailure({ error })))
@@ -50,9 +50,9 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.signInUserFailure, AuthActions.registerUserFailure),
-        tap(({ message }) => {
+        tap(({ error }) => {
           this.snackbarService.open({
-            message,
+            message: error.error.message,
             action: 'X',
             type: SnackTypes.ERROR,
             icon: SnackBarIconTypes.ERROR
