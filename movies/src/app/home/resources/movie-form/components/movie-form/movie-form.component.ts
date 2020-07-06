@@ -8,7 +8,7 @@ import {
   Input
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IMovieInput } from 'src/app/home/add-movie/interfaces';
+import { IMovieInput } from '@app/home/add-movie/interfaces';
 
 export interface IMovieForm {
   title: string;
@@ -38,7 +38,7 @@ export class MovieFormComponent implements OnInit {
     return this._movie;
   }
 
-  @Output() public movieFormEmitter = new EventEmitter<IMovieForm>();
+  @Output() public movieFormEmitter = new EventEmitter();
 
   constructor(private readonly formBuilder: FormBuilder, private readonly cd: ChangeDetectorRef) {}
 
@@ -59,9 +59,9 @@ export class MovieFormComponent implements OnInit {
     });
   }
 
-  public onSubmit(movieForm) {
+  public onSubmit() {
     if (!this.movieForm.valid) return this.cd.markForCheck();
 
-    this.movieFormEmitter.emit(movieForm.value);
+    this.movieFormEmitter.emit();
   }
 }
