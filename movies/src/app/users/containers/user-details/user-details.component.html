@@ -1,0 +1,30 @@
+<ng-container *ngIf="currentUser$ | async as user">
+  <span class="block title">User Details</span>
+  <form [formGroup]="userForm" fxLayout="column" fxLayout="column">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput placeholder="First Name" formControlName="firstName" autocomplete="on" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput placeholder="Last Name" formControlName="lastName" autocomplete="on" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput placeholder="Phone" formControlName="phone" autocomplete="on" />
+    </mat-form-field>
+  </form>
+
+  <button
+    mat-stroked-button
+    type="submit"
+    (click)="onSubmit(userForm.value, user._id)"
+    color="Primary"
+    [class.disabled]="!userForm.valid"
+    class="editUserBtn"
+  >
+    Edit User Details
+  </button>
+</ng-container>

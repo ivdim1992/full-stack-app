@@ -60,8 +60,25 @@ export class MovieFormComponent implements OnInit {
   }
 
   public onSubmit() {
-    if (!this.movieForm.valid) return this.cd.markForCheck();
+    if (!this.movieForm.valid) return this.markAsTouched();
 
     this.movieFormEmitter.emit();
+  }
+
+  public get value() {
+    return this.movieForm ? this.movieForm.value : null;
+  }
+
+  public get dirty() {
+    return this.movieForm ? this.movieForm.dirty : false;
+  }
+
+  public get valid(): boolean {
+    return this.movieForm ? this.movieForm.valid : false;
+  }
+
+  public markAsTouched() {
+    this.movieForm.markAllAsTouched();
+    this.cd.markForCheck();
   }
 }

@@ -15,28 +15,16 @@ export class EditMovieComponent implements OnInit {
   public movie$ = this.editMovieStoreFacade.movie$;
   public options: string[] = [];
 
+  @ViewChild(MovieFormComponent) public movieFormComponent: MovieFormComponent;
+
   constructor(private readonly editMovieStoreFacade: EditMovieStoreFacade) {}
 
-  @ViewChild(MovieFormComponent)
-  public movieFormComponent: MovieFormComponent;
-
   ngOnInit() {
-    this.options = Array.of(
-      GenresEnum.ACTION,
-      GenresEnum.COMEDY,
-      GenresEnum.DRAMA,
-      GenresEnum.HORROR,
-      GenresEnum.FANTASY,
-      GenresEnum.ADVENTURE,
-      GenresEnum.ANIMATION,
-      GenresEnum.CRIME,
-      GenresEnum.FAMILY,
-      GenresEnum.MYSTERY
-    );
+    this.options = Object.values(GenresEnum);
   }
 
   public onSubmit(movieId: string) {
-    const movieOutput = this.buildMovieOutput(this.movieFormComponent.movieForm.value);
+    const movieOutput = this.buildMovieOutput(this.movieFormComponent.value);
     this.editMovieStoreFacade.updateMovie(movieId, movieOutput);
   }
 

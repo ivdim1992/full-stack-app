@@ -19,18 +19,7 @@ export class AddMovieComponent implements OnInit {
   @ViewChild(MovieFormComponent) public movieFormComp: MovieFormComponent;
 
   public ngOnInit() {
-    this.options = Array.of(
-      GenresEnum.ACTION,
-      GenresEnum.COMEDY,
-      GenresEnum.DRAMA,
-      GenresEnum.HORROR,
-      GenresEnum.FANTASY,
-      GenresEnum.ADVENTURE,
-      GenresEnum.ANIMATION,
-      GenresEnum.CRIME,
-      GenresEnum.FAMILY,
-      GenresEnum.MYSTERY
-    );
+    this.options = Object.values(GenresEnum);
   }
 
   public onSubmit(movieForm: IMovieForm) {

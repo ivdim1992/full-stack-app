@@ -1,10 +1,9 @@
 import { EditMovieComponent } from './edit-movie.component';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import * as fromRootStore from '../../../../+store';
+// import * as fromRootStore from '../../../../+store';
 import { Store } from '@ngrx/store';
 import { IMovieInput } from '../../interfaces';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MovieFormModule } from '@app/home/resources/movie-form';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EditMovieResolver } from '../../resolver';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -12,12 +11,13 @@ import { convertToParamMap } from '@angular/router';
 import { hot } from 'jasmine-marbles';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Actions } from '@ngrx/effects';
-import { EditMovieActions } from '../../+store/actions';
+import { MaterialModule } from '@app/resources/material';
+import { SelectModule } from '@app/home/resources/select';
 
 describe('Edit Movie Component', () => {
   let component: EditMovieComponent;
   let fixture: ComponentFixture<EditMovieComponent>;
-  let store: Store<fromRootStore.State>;
+  // let store: Store<fromRootStore.State>;
   let movie: IMovieInput;
   let actions$: Observable<any>;
 
@@ -25,10 +25,22 @@ describe('Edit Movie Component', () => {
     movie = generateMovie('firstOne');
   });
 
+  beforeAll(() => {
+    Object.defineProperty(window, 'matchMedia', {
+      value: jest.fn(() => {
+        return {
+          matches: true,
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn()
+        };
+      })
+    });
+  });
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EditMovieComponent],
-      imports: [FormsModule, RouterTestingModule, ReactiveFormsModule, MovieFormModule],
+      imports: [FormsModule, RouterTestingModule, ReactiveFormsModule, MaterialModule, SelectModule],
       providers: [
         {
           provide: EditMovieResolver,
@@ -54,9 +66,9 @@ describe('Edit Movie Component', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EditMovieComponent);
-    actions$ = TestBed.get(Actions);
     component = fixture.componentInstance;
-    store = TestBed.get(Store);
+    actions$ = TestBed.get(Actions);
+    // store = TestBed.get(Store);
   });
 
   it('should create', () => {
@@ -68,17 +80,14 @@ describe('Edit Movie Component', () => {
   //     expect(fixture).toMatchSnapshot();
   //   });
 
-  it('should dispatch updateMovie action', () => {
-    const updatedMovie = generateMovie('updatedTitle');
-    const action = EditMovieActions.updateMovie({ movieId: updatedMovie._id, movie: updatedMovie });
-    const spy = jest.spyOn(store, 'dispatch');
+  // it('should dispatch updateMovie action', () => {
+  //   const updatedMovie = generateMovie('updatedTitle');
+  //   const action = EditMovieActions.updateMovie({ movieId: updatedMovie._id, movie: updatedMovie });
+  //   const spy = jest.spyOn(store, 'dispatch');
 
-    fixture.detectChanges();
-
-    // TODO IMPLEMENT THIS METHOD
-    // component.onSubmit(updatedMovie._id);
-    // expect(spy).toHaveBeenCalledWith(action);
-  });
+  //   fixture.detectChanges();
+  //   expect(spy).toHaveBeenCalledWith(action);
+  // });
 });
 
 const generateMovie = (title: string): IMovieInput => {
