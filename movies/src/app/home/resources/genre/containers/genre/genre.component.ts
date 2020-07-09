@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { GenresEnum } from 'src/app/shared/enums';
+import { IGenre } from '@app/shared/interfaces';
 
 @Component({
   selector: 'app-genre',
@@ -9,23 +10,11 @@ import { GenresEnum } from 'src/app/shared/enums';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GenreComponent {
-  @Output() public selectedGenre = new EventEmitter<{ id: string; genre: string }>();
+  @Output() public selectedGenre = new EventEmitter<IGenre>();
   @Output() public clearSelection = new EventEmitter();
 
   public currentIndex: number;
-
-  public genres: string[] = Array.of(
-    GenresEnum.ACTION,
-    GenresEnum.COMEDY,
-    GenresEnum.DRAMA,
-    GenresEnum.HORROR,
-    GenresEnum.FANTASY,
-    GenresEnum.ADVENTURE,
-    GenresEnum.ANIMATION,
-    GenresEnum.CRIME,
-    GenresEnum.FAMILY,
-    GenresEnum.MYSTERY
-  );
+  public genres: string[] = Object.values(GenresEnum);
 
   constructor(private readonly router: Router) {}
 

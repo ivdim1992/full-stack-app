@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { FavoriteMoviesStoreFacade } from '../../+store/facades';
 import { Router } from '@angular/router';
 
@@ -8,12 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./favorites.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FavoritesComponent {
+export class FavoritesComponent implements OnDestroy {
   public favoriteMovies$ = this.favoriteMoviesStoreFacade.favoriteMovies$;
 
   constructor(private readonly favoriteMoviesStoreFacade: FavoriteMoviesStoreFacade, private readonly router: Router) {}
 
   public onViewDetails(movieId: string) {
     this.router.navigate(['movies', 'details', movieId]);
+  }
+
+  public ngOnDestroy() {
+    this.favoriteMoviesStoreFacade.clear();
   }
 }

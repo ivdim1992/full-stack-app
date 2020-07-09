@@ -13,6 +13,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Actions } from '@ngrx/effects';
 import { MaterialModule } from '@app/resources/material';
 import { SelectModule } from '@app/home/resources/select';
+import { MovieFormModule } from '@app/home/resources/movie-form';
 
 describe('Edit Movie Component', () => {
   let component: EditMovieComponent;
@@ -40,7 +41,7 @@ describe('Edit Movie Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EditMovieComponent],
-      imports: [FormsModule, RouterTestingModule, ReactiveFormsModule, MaterialModule, SelectModule],
+      imports: [FormsModule, RouterTestingModule, ReactiveFormsModule, MovieFormModule],
       providers: [
         {
           provide: EditMovieResolver,

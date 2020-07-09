@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { UserStoreFacade } from '@app/users/+store/facades';
@@ -15,7 +15,7 @@ export interface UserForm {
   styleUrls: ['./user-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserDetailsComponent implements OnInit {
+export class UserDetailsComponent implements OnInit, OnDestroy {
   public currentUser$ = this.userStoreFacade.user$;
   constructor(private readonly userStoreFacade: UserStoreFacade, private readonly formBuilder: FormBuilder) {}
 
@@ -33,5 +33,9 @@ export class UserDetailsComponent implements OnInit {
   public onSubmit(userForm: UserForm, id: string) {
     if (!this.userForm.valid) return;
     this.userStoreFacade.updateUser(id, userForm);
+  }
+
+  public ngOnDestroy() {
+    this.userStoreFacade.clear();
   }
 }
