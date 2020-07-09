@@ -3,7 +3,8 @@ import { Actions, ofType } from '@ngrx/effects';
 import { MovieListActions, SelectedGenreActions } from '../actions';
 import { Store, select } from '@ngrx/store';
 import * as fromMovieListReducer from '../reducers';
-import { MovieListSelectors } from '../selectors';
+import { MovieListSelectors, SelectedGenreSelectors } from '../selectors';
+import { IGenre } from '@app/shared/interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class MovieListStoreFacade {
@@ -11,14 +12,17 @@ export class MovieListStoreFacade {
 
   public getMoviesSuccess = this.actions$.pipe(ofType(MovieListActions.getMoviesSuccess));
 
+  public selectedGenre$ = this.store.pipe(select(SelectedGenreSelectors.genres));
   public movies$ = this.store.pipe(select(MovieListSelectors.getFilteredMovies));
+
+  public readonly selectedGenresMap$ = this.store.pipe(select(SelectedGenreSelectors.genreEntities));
 
   public getMovies() {
     this.store.dispatch(MovieListActions.getMovies());
   }
 
-  public selectedGenre(id: string, genre: string) {
-    this.store.dispatch(SelectedGenreActions.select({ id, genre }));
+  public selectedGenre(genre: IGenre) {
+    this.store.dispatch(SelectedGenreActions.select({ genre }));
   }
 
   public deselectedGenre() {

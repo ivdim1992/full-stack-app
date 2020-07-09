@@ -11,7 +11,7 @@ export class FavoriteMoviesStoreFacade {
 
   public getFavoriteMoviesSuccess = this.actions$.pipe(ofType(FavoriteMoviesActions.getFavoriteMoviesSuccess));
 
-  public favoriteMovies$ = this.store.pipe(select(FavoriteMoviesSelectors.favoriteMovies));
+  public favoriteMovies$ = this.store.pipe(select(FavoriteMoviesSelectors.getFilteredMovies));
 
   public getFavoriteMovies() {
     this.store.dispatch(FavoriteMoviesActions.getFavoriteMovies());

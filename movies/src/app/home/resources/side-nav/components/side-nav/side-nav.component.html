@@ -7,7 +7,12 @@
     <li class="cursor-pointer" fxLayoutAlign="center center" routerLink="/movies/favorites" routerLinkActive="active">
       <mat-icon>favorite</mat-icon>
     </li>
-    <li class="cursor-pointer" fxLayoutAlign="center center" routerLink="/user" routerLinkActive="active">
+    <li
+      class="cursor-pointer"
+      fxLayoutAlign="center center"
+      routerLink="/users/{{ (user$ | async)._id }}"
+      routerLinkActive="active"
+    >
       <mat-icon>face</mat-icon>
     </li>
   </ul>

@@ -1,0 +1,33 @@
+@import 'abstracts/colors';
+:host {
+  display: block;
+  padding: 60px;
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+
+  .title {
+    font-size: 20px;
+    padding-bottom: 35px;
+    color: #feffff;
+    font-weight: 500;
+  }
+
+  .editUserBtn {
+    display: block;
+    width: 50%;
+    border: 1px solid #fe0f70;
+    color: #fe0f70;
+    margin: 0 auto;
+    transition: ease-in-out 0.3s;
+  }
+
+  .editUserBtn:hover {
+    background-color: $primary-color;
+    color: $light;
+  }
+
+  .disabled {
+    opacity: 0.5;
+  }
+}

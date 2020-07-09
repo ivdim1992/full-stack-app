@@ -23,5 +23,6 @@ export class MoviesComponent implements OnDestroy {
 
   public ngOnDestroy() {
     this.movieListStoreFacade.clear();
+    this.movieListStoreFacade.deselectedGenre();
   }
 }

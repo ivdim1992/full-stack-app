@@ -17,7 +17,8 @@
     "paths": {
       "@env/*": ["src/environments/*"],
       "@app/*": ["src/app/*"],
-      "@shared/*": ["src/app/shared/*"]
+      "@shared/*": ["src/app/shared/*"],
+      "@rootStore/*": ["src/app/+store/*"]
     },
     "target": "es2015",
     "types": ["reflect-metadata", "jest", "node"],

@@ -7,7 +7,7 @@ router.get('/users/:userId', async (req, res, next) => {
     try {
         const id = new ObjectId(req.params.userId);
 
-        const user = await User.findOne({ _id: id });
+        const user = await User.findOne({ _id: id }).select('-password');
 
         res.status(200).setHeader('Content-Type', 'application/json');
         return res.end(JSON.stringify(user));
