@@ -53,7 +53,7 @@ export class MovieFormComponent implements OnInit {
         Validators.required,
         Validators.pattern(`[0-9]+`)
       ]),
-      poster: this.formBuilder.control(incomingMovie ? incomingMovie.poster : '', [Validators.required]),
+      poster: this.formBuilder.control(incomingMovie ? incomingMovie.poster : ''),
       description: this.formBuilder.control(incomingMovie ? incomingMovie.description : '', [Validators.required]),
       genres: [incomingMovie ? incomingMovie.genres : '', Validators.required]
     });

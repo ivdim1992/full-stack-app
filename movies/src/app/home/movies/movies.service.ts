@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IMovie } from 'src/app/shared/interfaces';
 import { IFavoriteMovie } from 'src/app/shared/interfaces/favorite-movie.interface';
 import { IMovieOutput } from '../add-movie/interfaces';
@@ -47,14 +47,14 @@ export class MoviesService {
   public uploadPoster(poster: any): Observable<any> {
     const input = new FormData();
     input.append('url', poster);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'multipart/form-data',
-        Accepts: 'application/json'
-      })
-    };
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'multipart/form-data',
+    //     Accepts: 'application/json'
+    //   })
+    // };
     // tslint:disable-next-line: no-any
-    return this.http.post<any>(`${this.baseURL}/file-upload`, input, httpOptions);
+    return this.http.post<any>(`${this.baseURL}/file-upload`, poster);
   }
 
   public setOrRemoveFromFavorites(movieId: string, setOrRemove: boolean): Observable<IFavoriteMovie> {
