@@ -11,6 +11,7 @@ const moviesRoutes = require('./routes/movies');
 const userRoutes = require('./routes/user');
 const swaggerRoutes = require('./routes/swagger');
 const authRoutes = require('./routes/auth');
+const fileRoutes = require('./routes/file-upload');
 
 var corsOptions = {
     origin: 'http://localhost:4200',
@@ -32,7 +33,6 @@ module.exports = {
 
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: false }));
-
         app.use(db);
         app.use(allowCrossDomain);
 
@@ -40,14 +40,13 @@ module.exports = {
 
         app.use(swaggerRoutes);
         app.use('/api', authRoutes);
-        app.use('/api', auth, moviesRoutes, userRoutes);
+        app.use('/api', auth, moviesRoutes, userRoutes, fileRoutes);
 
         app.use((err, req, res, next) => {
             if (res.headersSent) {
                 return next(err);
             }
-            res.status(500);
-            res.render('error', { error: err });
+            res.status(500).send('error', { error: err });
         });
 
         app.listen(port, () => {
