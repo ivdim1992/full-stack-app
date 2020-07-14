@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Movie = require('../middlewares/db/models/Movie');
 
+const upload = require('../services/file-upload');
+
+const singleFileUpload = upload.single('image');
+
 router.get('/movies', async (req, res, next) => {
     try {
         const movies = await Movie.find({ creator: req.user.id });

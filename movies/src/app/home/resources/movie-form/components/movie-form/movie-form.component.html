@@ -13,14 +13,11 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>URL Avatar</mat-label>
-    <input matInput placeholder="URL Avatar" formControlName="poster" autocomplete="on" />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
     <input matInput placeholder="Description" formControlName="description" autocomplete="on" />
   </mat-form-field>
+
+  <app-poster-upload class="margin-b-lg" description="Movie Poster:" formControlName="poster"></app-poster-upload>
 
   <span class="block margin-b-md">Genres</span>
   <app-select formControlName="genres">

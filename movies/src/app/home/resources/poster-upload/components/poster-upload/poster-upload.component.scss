@@ -1,0 +1,26 @@
+@import 'abstracts/colors';
+
+.browse-button {
+  cursor: pointer;
+  padding: 0px 16px;
+  height: 36px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border: 1px solid map-get($mvp-gray, 400);
+  border-radius: 4px;
+  background-color: transparent;
+  font-weight: bold;
+
+  mat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+}
+
+.image-criteria {
+  font-size: 12px;
+  opacity: 0.8;
+}

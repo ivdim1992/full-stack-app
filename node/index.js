@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const app = require('./app');
 
 const { HOST, PORT, JWT_SECRET } = process.env;

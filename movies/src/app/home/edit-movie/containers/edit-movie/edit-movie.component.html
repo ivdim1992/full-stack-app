@@ -2,9 +2,10 @@
   <div class="edit-movie form">
     <span class="block title">Edit Movie</span>
     <app-movie-form
+      #movieForm
       [options]="options"
       buttonTitle="Edit Movie"
-      (movieFormEmitter)="onSubmit(movie._id)"
+      (movieFormEmitter)="onSubmit(movie._id, movieForm.value)"
       [movie]="movie"
     ></app-movie-form>
   </div>

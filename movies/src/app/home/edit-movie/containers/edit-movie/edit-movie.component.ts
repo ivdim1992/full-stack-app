@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { EditMovieStoreFacade } from '../../+store/facades';
 import { IMovieOutput } from '../../interfaces';
 import { produce } from 'immer';
 import { GenresEnum } from '@app/shared/enums';
-import { MovieFormComponent, IMovieForm } from '@app/home/resources/movie-form/components';
+import { IMovieForm } from '@app/home/resources/movie-form/components';
 
 @Component({
   selector: 'app-edit-movie',
@@ -15,16 +15,14 @@ export class EditMovieComponent implements OnInit {
   public movie$ = this.editMovieStoreFacade.movie$;
   public options: string[] = [];
 
-  @ViewChild(MovieFormComponent) public movieFormComponent: MovieFormComponent;
-
   constructor(private readonly editMovieStoreFacade: EditMovieStoreFacade) {}
 
   ngOnInit() {
     this.options = Object.values(GenresEnum);
   }
 
-  public onSubmit(movieId: string) {
-    const movieOutput = this.buildMovieOutput(this.movieFormComponent.value);
+  public onSubmit(movieId: string, movieForm: IMovieForm) {
+    const movieOutput = this.buildMovieOutput(movieForm);
     this.editMovieStoreFacade.updateMovie(movieId, movieOutput);
   }
 

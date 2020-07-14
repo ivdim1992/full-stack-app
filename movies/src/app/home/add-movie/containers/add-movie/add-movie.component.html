@@ -1,4 +1,9 @@
 <div class="create-movie form">
   <span class="block title">Create Movie</span>
-  <app-movie-form [options]="options" (movieFormEmitter)="onSubmit($event)" buttonTitle="Create"></app-movie-form>
+  <app-movie-form
+    #movieForm
+    [options]="options"
+    (movieFormEmitter)="onSubmit(movieForm.value)"
+    buttonTitle="Create"
+  ></app-movie-form>
 </div>
