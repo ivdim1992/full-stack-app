@@ -12,8 +12,8 @@ import { SnackTypes, SnackBarIconTypes } from '@app/shared/enums';
 export class CreateMovieEffects {
   public readonly createMovie$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(CreateMovieActions.createPosterSuccess),
-      switchMap(({ poster, movieOutput }) =>
+      ofType(CreateMovieActions.createMovie),
+      switchMap(({ movieOutput }) =>
         this.movieService.createMovie(movieOutput).pipe(
           map((movie) => CreateMovieActions.createMovieSuccess({ movie })),
           catchError((error) => of(CreateMovieActions.createMovieFailure({ error })))
@@ -22,17 +22,17 @@ export class CreateMovieEffects {
     )
   );
 
-  public readonly createPoster$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(CreateMovieActions.createMovie),
-      switchMap(({ movieOutput }) =>
-        this.movieService.uploadPoster(movieOutput.poster).pipe(
-          map((poster) => CreateMovieActions.createPosterSuccess({ poster, movieOutput })),
-          catchError((error) => of(CreateMovieActions.createPosterFailure({ error })))
-        )
-      )
-    )
-  );
+  // public readonly createPoster$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(CreateMovieActions.createMovie),
+  //     switchMap(({ movieOutput }) =>
+  //       this.movieService.uploadPoster(movieOutput.poster).pipe(
+  //         map((poster) => CreateMovieActions.createPosterSuccess({ poster, movieOutput })),
+  //         catchError((error) => of(CreateMovieActions.createPosterFailure({ error })))
+  //       )
+  //     )
+  //   )
+  // );
 
   public readonly navigateToMoviesList$ = createEffect(
     () =>

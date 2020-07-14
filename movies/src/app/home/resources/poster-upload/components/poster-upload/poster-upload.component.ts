@@ -46,7 +46,7 @@ export class PosterUploadComponent implements ControlValueAccessor {
 
     this.imgPath = image.relativePath;
     fileEntry.file((file: File) => {
-      this.onChange(file);
+      this.onChange(file.name);
     });
   }
 
