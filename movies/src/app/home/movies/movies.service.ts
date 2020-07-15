@@ -43,20 +43,6 @@ export class MoviesService {
     return this.http.get<IFavoriteMovieInput[]>(`${this.baseURL}/movies/favorites/all`);
   }
 
-  // tslint:disable-next-line: no-any
-  public uploadPoster(poster: any): Observable<any> {
-    const input = new FormData();
-    input.append('url', poster);
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'multipart/form-data',
-    //     Accepts: 'application/json'
-    //   })
-    // };
-    // tslint:disable-next-line: no-any
-    return this.http.post<any>(`${this.baseURL}/file-upload`, poster);
-  }
-
   public setOrRemoveFromFavorites(movieId: string, setOrRemove: boolean): Observable<IFavoriteMovie> {
     let params = new HttpParams();
     params = params.set('isFavorite', setOrRemove.toString());

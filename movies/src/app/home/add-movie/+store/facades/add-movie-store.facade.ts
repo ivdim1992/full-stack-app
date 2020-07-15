@@ -3,7 +3,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { CreateMovieActions } from '../actions';
 import { Store } from '@ngrx/store';
 import * as fromCreateMovieReducer from '../reducers';
-import { IMovieOutput } from '../../interfaces';
+import { IMovieInput } from '../../interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class CreateMovieStoreFacade {
@@ -11,7 +11,7 @@ export class CreateMovieStoreFacade {
 
   public createMovieSuccess$ = this.actions$.pipe(ofType(CreateMovieActions.createMovieSuccess));
 
-  public createMovie(movieOutput: IMovieOutput) {
+  public createMovie(movieOutput: IMovieInput) {
     this.store.dispatch(CreateMovieActions.createMovie({ movieOutput }));
   }
 

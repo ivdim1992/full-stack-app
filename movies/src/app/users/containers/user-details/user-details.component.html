@@ -14,6 +14,9 @@
     <mat-form-field appearance="outline">
       <mat-label>Phone</mat-label>
       <input matInput placeholder="Phone" formControlName="phone" autocomplete="on" />
+      <mat-error *ngIf="userForm.get('phone').hasError('pattern')">
+        Only digits allowed!
+      </mat-error>
     </mat-form-field>
   </form>
 

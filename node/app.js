@@ -11,7 +11,6 @@ const moviesRoutes = require('./routes/movies');
 const userRoutes = require('./routes/user');
 const swaggerRoutes = require('./routes/swagger');
 const authRoutes = require('./routes/auth');
-const fileRoutes = require('./routes/file-upload');
 
 var corsOptions = {
     origin: 'http://localhost:4200',
@@ -40,7 +39,7 @@ module.exports = {
 
         app.use(swaggerRoutes);
         app.use('/api', authRoutes);
-        app.use('/api', auth, moviesRoutes, userRoutes, fileRoutes);
+        app.use('/api', auth, moviesRoutes, userRoutes);
 
         app.use((err, req, res, next) => {
             if (res.headersSent) {

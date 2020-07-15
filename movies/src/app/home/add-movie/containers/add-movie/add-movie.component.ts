@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
-import { IMovieOutput } from '../../interfaces';
-import { MovieFormComponent, IMovieForm } from 'src/app/home/resources/movie-form/components';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { MovieFormComponent } from 'src/app/home/resources/movie-form/components';
 import { CreateMovieStoreFacade } from '../../+store/facades';
 import { GenresEnum } from 'src/app/shared/enums';
-import { produce } from 'immer';
+import { FileUploader } from 'ng2-file-upload';
+import { AuthStoreFacade } from '@app/auth/+store/facades';
+import { take } from 'rxjs/operators';
+import { GLOBAL_SETTINGS, GlobalSettings } from '@app/shared/tokens';
 
 @Component({
   selector: 'app-add-movie',
@@ -13,29 +15,44 @@ import { produce } from 'immer';
 })
 export class AddMovieComponent implements OnInit {
   public options: string[] = [];
+  public URL = `${this.settings.api.baseURL}/movies`;
+  public user$ = this.authStoreFacade.user$;
+  public uploader: FileUploader;
 
-  constructor(private readonly createMovieStoreFacade: CreateMovieStoreFacade) {}
+  @ViewChild(MovieFormComponent) public movieForm: MovieFormComponent;
 
-  @ViewChild(MovieFormComponent) public movieFormComp: MovieFormComponent;
+  constructor(
+    private readonly createMovieStoreFacade: CreateMovieStoreFacade,
+    private readonly authStoreFacade: AuthStoreFacade,
+    @Inject(GLOBAL_SETTINGS)
+    private readonly settings: GlobalSettings
+  ) {}
 
   public ngOnInit() {
     this.options = Object.values(GenresEnum);
-  }
 
-  public onSubmit(movieForm: IMovieForm) {
-    const movieOutput = this.buildMovieOutput(movieForm);
-    this.createMovieStoreFacade.createMovie(movieOutput);
-  }
-
-  public buildMovieOutput(movieForm: IMovieForm): IMovieOutput {
-    const output = produce<IMovieOutput>(movieForm, (baseState) => {
-      (baseState.description = movieForm.description),
-        (baseState.genres = movieForm.genres),
-        (baseState.poster = movieForm.poster),
-        (baseState.title = movieForm.title),
-        (baseState.year = movieForm.year);
+    this.user$.pipe(take(1)).subscribe((user) => {
+      this.uploader = new FileUploader({
+        url: this.URL,
+        itemAlias: 'image',
+        authToken: user.token
+      });
     });
 
-    return output;
+    this.uploader.onAfterAddingFile = (file) => {
+      file.withCredentials = false;
+    };
+
+    // tslint:disable-next-line: no-any
+    this.uploader.onCompleteItem = (item: any, response: string) => {
+      this.createMovieStoreFacade.createMovie(JSON.parse(response));
+    };
+
+    this.uploader.onBuildItemForm = (item, form) => {
+      form.append('description', this.movieForm.value.description);
+      form.append('genres', this.movieForm.value.genres);
+      form.append('title', this.movieForm.value.title);
+      form.append('year', this.movieForm.value.year);
+    };
   }
 }

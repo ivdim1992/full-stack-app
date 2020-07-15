@@ -13,7 +13,6 @@ import { IMovieInput } from '@app/home/add-movie/interfaces';
 export interface IMovieForm {
   title: string;
   year: number;
-  poster: string;
   description: string;
   genres: string[];
 }
@@ -27,6 +26,8 @@ export interface IMovieForm {
 export class MovieFormComponent implements OnInit {
   public movieForm: FormGroup;
   public _movie: IMovieInput;
+
+  @Input() public shouldShow = false;
   @Input() public buttonTitle: string;
 
   @Input() public options: string[] = [];
@@ -51,9 +52,8 @@ export class MovieFormComponent implements OnInit {
       title: this.formBuilder.control(incomingMovie ? incomingMovie.title : '', [Validators.required]),
       year: this.formBuilder.control(incomingMovie ? incomingMovie.year : '', [
         Validators.required,
-        Validators.pattern(`[0-9]+`)
+        Validators.pattern('[0-9]+')
       ]),
-      poster: this.formBuilder.control(incomingMovie ? incomingMovie.poster : ''),
       description: this.formBuilder.control(incomingMovie ? incomingMovie.description : '', [Validators.required]),
       genres: [incomingMovie ? incomingMovie.genres : '', Validators.required]
     });
@@ -65,7 +65,7 @@ export class MovieFormComponent implements OnInit {
     this.movieFormEmitter.emit();
   }
 
-  public get value() {
+  public get value(): IMovieForm {
     return this.movieForm ? this.movieForm.value : null;
   }
 

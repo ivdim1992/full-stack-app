@@ -4,8 +4,6 @@ const Movie = require('../middlewares/db/models/Movie');
 
 const upload = require('../services/file-upload');
 
-const singleFileUpload = upload.single('image');
-
 router.get('/movies', async (req, res, next) => {
     try {
         const movies = await Movie.find({ creator: req.user.id });
@@ -18,7 +16,7 @@ router.get('/movies', async (req, res, next) => {
     }
 });
 
-router.post('/movies', async (req, res, next) => {
+router.post('/movies', upload.single('image'), async (req, res, next) => {
     try {
         if (!req.body.title || !req.body.description) {
             res.status(400).send({ error: 'title and description required' })
@@ -28,6 +26,7 @@ router.post('/movies', async (req, res, next) => {
         const movie = await req.models.Movie.create({
             ...req.body,
             creator: req.user.id,
+            poster: req.file.location,
         });
 
         req.user.movies.push(movie.id);

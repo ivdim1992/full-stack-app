@@ -25,7 +25,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
       this.userForm = this.formBuilder.group({
         firstName: this.formBuilder.control(user ? user.firstName : '', Validators.required),
         lastName: this.formBuilder.control(user ? user.lastName : '', Validators.required),
-        phone: this.formBuilder.control(user ? user.phone : '', Validators.required)
+        phone: this.formBuilder.control(user ? user.phone : '', [Validators.required, Validators.pattern('[0-9]+')])
       });
     });
   }
