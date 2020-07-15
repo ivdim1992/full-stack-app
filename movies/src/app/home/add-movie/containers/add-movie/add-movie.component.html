@@ -1,9 +1,23 @@
 <div class="create-movie form">
   <span class="block title">Create Movie</span>
-  <app-movie-form
-    #movieForm
-    [options]="options"
-    (movieFormEmitter)="onSubmit(movieForm.value)"
-    buttonTitle="Create"
-  ></app-movie-form>
+  <app-movie-form #movieForm [options]="options" buttonTitle="Create">
+    <div class="wrapper">
+      <span class="margin-r-xl block margin-b-lg"> Movie Poster </span>
+      <div class="file-upload">
+        <input type="file" name="image" [uploader]="uploader" ng2FileSelect accept="image/x-png,image/gif,image/jpeg" />
+        <button
+          type="button"
+          class="browse-button bold"
+          (click)="uploader.uploadAll()"
+          mat-stroked-button
+          color="Primary"
+          [class.disabled]="!movieForm.valid"
+        >
+          <mat-icon color="primary" class="margin-r-lg">open_in_browser</mat-icon>
+          <span>Create</span>
+        </button>
+      </div>
+      <span class="image-criteria block">Accepts jpeg,png and gif formats</span>
+    </div>
+  </app-movie-form>
 </div>

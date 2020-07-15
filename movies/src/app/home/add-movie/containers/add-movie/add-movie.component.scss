@@ -12,4 +12,43 @@
     color: #feffff;
     font-weight: 500;
   }
+
+  .file-upload {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .browse-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 30px;
+    border: 1px solid #fe0f70;
+    color: #fe0f70;
+    margin: 0 auto;
+    justify-content: center;
+    transition: ease-in-out 0.3s;
+    background: transparent;
+
+    mat-icon {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .browse-button:hover {
+    background-color: $primary-color;
+    color: $light;
+  }
+
+  .disabled {
+    opacity: 0.5;
+  }
+
+  .image-criteria {
+    font-size: 12px;
+    opacity: 0.8;
+  }
 }

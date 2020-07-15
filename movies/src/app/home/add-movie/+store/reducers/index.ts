@@ -25,11 +25,7 @@ const createMovieReducer = createReducer(
       baseState.movie = action.movie;
     })
   ),
-  on(CreateMovieActions.createPosterSuccess, (state, action) =>
-    produce(state, (baseState) => {
-      baseState.movie = Object.assign(baseState.movie, { poster: action.poster });
-    })
-  ),
+
   on(CreateMovieActions.clear, () => initialState)
 );
 

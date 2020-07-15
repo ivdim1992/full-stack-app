@@ -3,6 +3,7 @@
     <span class="block title">Edit Movie</span>
     <app-movie-form
       #movieForm
+      [shouldShow]="true"
       [options]="options"
       buttonTitle="Edit Movie"
       (movieFormEmitter)="onSubmit(movie._id, movieForm.value)"
