@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { UserDetailsComponent } from './containers';
-import { HomeLayoutComponent } from '../home/resources/home-layout/components';
+import { HomeLayoutComponent } from '../movies/resources/home-layout/components';
 import { UserResolver } from './resolver';
 
 export const routes: Routes = [

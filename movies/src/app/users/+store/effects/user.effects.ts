@@ -3,7 +3,6 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { UserActions } from '../actions';
 import { switchMap, catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Router } from '@angular/router';
 import { SnackBarService } from '@app/shared/services';
 import { SnackTypes, SnackBarIconTypes } from '@app/shared/enums';
 import { UserService } from '@app/users/user.service';
@@ -45,7 +44,6 @@ export class UserEffects {
             type: SnackTypes.SUCCESS,
             icon: SnackBarIconTypes.SUCCESS
           });
-          return this.router.navigate(['movies', 'list']);
         })
       ),
     { dispatch: false }
@@ -54,7 +52,6 @@ export class UserEffects {
   constructor(
     private readonly actions$: Actions,
     private readonly userService: UserService,
-    private readonly router: Router,
     private readonly snackbarService: SnackBarService
   ) {}
 }
