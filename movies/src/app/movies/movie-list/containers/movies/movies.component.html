@@ -1,0 +1,12 @@
+<div *ngFor="let movie of movies$ | async">
+  <app-movie-card
+    [movie]="movie"
+    [isInFavorite]="movie.isFavorite"
+    fxLayout="row"
+    class="margin-r-xxl"
+    (favoriteIconSelected)="onSelectFavoriteIcon($event)"
+    (viewDetailsSelected)="onViewDetails($event)"
+  >
+  </app-movie-card>
+</div>
+<app-no-movies *ngIf="(movies$ | async).length === 0"></app-no-movies>

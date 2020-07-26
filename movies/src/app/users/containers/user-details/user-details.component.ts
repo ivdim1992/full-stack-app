@@ -23,9 +23,9 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.currentUser$.pipe(take(1)).subscribe((user) => {
       this.userForm = this.formBuilder.group({
-        firstName: this.formBuilder.control(user ? user.firstName : '', Validators.required),
-        lastName: this.formBuilder.control(user ? user.lastName : '', Validators.required),
-        phone: this.formBuilder.control(user ? user.phone : '', [Validators.required, Validators.pattern('[0-9]+')])
+        firstName: this.formBuilder.control(user ? user.firstName : ''),
+        lastName: this.formBuilder.control(user ? user.lastName : ''),
+        phone: this.formBuilder.control(user ? user.phone : '', [Validators.pattern('[0-9]+')])
       });
     });
   }

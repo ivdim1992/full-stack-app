@@ -1,0 +1,28 @@
+@import 'abstracts/colors';
+
+:host {
+  display: block;
+  background-color: $lighter-blue;
+  height: 80px;
+  padding: 0 100px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+
+  .title {
+    font-size: 20px;
+    padding: 20px 35px;
+    color: $light;
+    font-weight: 500;
+  }
+}
+
+mat-icon {
+  font-size: 27px;
+}
+
+.log-out:hover {
+  color: $primary-color;
+}

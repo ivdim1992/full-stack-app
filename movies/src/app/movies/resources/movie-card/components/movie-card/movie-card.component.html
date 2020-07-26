@@ -1,0 +1,28 @@
+<div class="container margin-b-xl" fxLayout="column" fxLayoutAlign="space-between center">
+  <div class="movie-card">
+    <div class="movie-header">
+      <img class="poster" src="{{ movie.poster }}" alt="movie-avatar" />
+    </div>
+    <div class="movie-content">
+      <div class="movie-info margin-t-lg" fxLayout="row" fxLayoutAlign="space-between center">
+        <span class="block" *ngIf="!movie.isFavorite">
+          <mat-icon (click)="onSelectFavoriteIcon(movie._id)" class="cursor-pointer">favorite_border</mat-icon>
+        </span>
+        <span class="block" *ngIf="movie.isFavorite">
+          <mat-icon (click)="onSelectFavoriteIcon(movie._id)" class="cursor-pointer">favorite</mat-icon>
+        </span>
+        <div fxLayout="column">
+          <span class="year-title block">Year</span>
+          <span class="year block">{{ movie.year }}</span>
+        </div>
+        <div fxLayout="column">
+          <span class="year-title block">Genres</span>
+          <span class="genres block">{{ movie.genres.join(', ').toUpperCase() }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button mat-stroked-button color="primary" class="view-details" (click)="onViewDetails(movie._id)">
+    View Details
+  </button>
+</div>
