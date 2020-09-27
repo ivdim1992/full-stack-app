@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { UserDetailsComponent } from './containers';
-import { HomeLayoutComponent } from '../movies/resources/home-layout/components';
 import { UserResolver } from './resolver';
+import { HomeLayoutComponent } from '@app/movies/resources/components';
 
 export const routes: Routes = [
   {

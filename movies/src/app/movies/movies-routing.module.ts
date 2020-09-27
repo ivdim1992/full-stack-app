@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
-import { HomeLayoutComponent } from './resources/home-layout/components';
 import { NgModule } from '@angular/core';
+import { HomeLayoutComponent } from './resources/components';
 
 export const routes: Routes = [
   {
@@ -39,4 +39,4 @@ export const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomeRoutingModule {}
+export class MoviesRoutingModule {}

@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-import { SignInLayoutComponent } from './resources/sign-in-layout/containers';
 import { SignInComponent, RegisterComponent } from './containers';
 import { NgModule } from '@angular/core';
 import { AuthGuardService } from './guard';
+import { SignInLayoutComponent } from './resources/components';
 
 const routes: Routes = [
   {

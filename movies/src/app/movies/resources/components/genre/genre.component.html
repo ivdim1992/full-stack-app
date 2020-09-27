@@ -1,7 +1,5 @@
 <div class="genres-container">
-  <button mat-stroked-button class="add-button margin-t-lg" (click)="onAddMovie()">
-    Create Movie
-  </button>
+  <button mat-stroked-button class="add-button margin-t-lg" (click)="onAddMovie()">Create Movie</button>
 
   <ul class="genres margin-t-xl">
     <li
@@ -10,11 +8,9 @@
       (click)="onSelect(genre, i)"
       [ngClass]="{ selected: currentIndex === i }"
     >
-      {{ genre }}
+      {{ genre }} ({{ genresCount[genre] }})
     </li>
   </ul>
 
-  <button mat-stroked-button class="clear-selection margin-t-lg" (click)="onClearSelection()">
-    Clear Selection
-  </button>
+  <button mat-stroked-button class="clear-selection margin-t-lg" (click)="onClearSelection()">Clear Selection</button>
 </div>

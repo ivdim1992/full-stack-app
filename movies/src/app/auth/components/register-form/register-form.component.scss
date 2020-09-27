@@ -8,8 +8,14 @@ form {
     color: map-get($mvp-gray, 400);
   }
 
-  button {
+  .register-btn {
     padding: 5px 50px;
     border: 1px solid $primary-color;
+    transition: ease-in-out 0.3s;
+  }
+
+  .register-btn:hover {
+    background-color: $primary-color;
+    color: $light;
   }
 }

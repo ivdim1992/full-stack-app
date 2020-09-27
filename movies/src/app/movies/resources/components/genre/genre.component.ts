@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { GenresEnum } from 'src/app/shared/enums';
 import { IGenre } from '@app/shared/interfaces';
@@ -12,6 +12,8 @@ import { IGenre } from '@app/shared/interfaces';
 export class GenreComponent {
   @Output() public selectedGenre = new EventEmitter<IGenre>();
   @Output() public clearSelection = new EventEmitter();
+
+  @Input() public genresCount;
 
   public currentIndex: number;
   public genres: string[] = Object.values(GenresEnum);
