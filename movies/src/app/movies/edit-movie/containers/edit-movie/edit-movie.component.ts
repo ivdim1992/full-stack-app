@@ -3,6 +3,8 @@ import { EditMovieStoreFacade } from '../../+store/facades';
 import { IMovieOutput } from '../../interfaces';
 import { GenresEnum } from '@app/shared/enums';
 import { IMovieForm } from '@app/movies/resources/movie-form/components';
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-movie',
@@ -13,10 +15,15 @@ import { IMovieForm } from '@app/movies/resources/movie-form/components';
 export class EditMovieComponent implements OnInit {
   public movie$ = this.editMovieStoreFacade.movie$;
   public options: string[] = [];
+  public navigateBack: string;
 
-  constructor(private readonly editMovieStoreFacade: EditMovieStoreFacade) {}
+  constructor(
+    private readonly editMovieStoreFacade: EditMovieStoreFacade,
+    private readonly activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
+    this.activatedRoute.queryParams.pipe(take(1)).subscribe((params) => (this.navigateBack = params.backRoute));
     this.options = Object.values(GenresEnum);
   }
 

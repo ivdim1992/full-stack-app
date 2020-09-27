@@ -12,6 +12,7 @@ import { hot } from 'jasmine-marbles';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Actions } from '@ngrx/effects';
 import { MovieFormModule } from '@app/movies/resources/movie-form';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('Edit Movie Component', () => {
   let component: EditMovieComponent;
@@ -39,7 +40,7 @@ describe('Edit Movie Component', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EditMovieComponent],
-      imports: [FormsModule, RouterTestingModule, ReactiveFormsModule, MovieFormModule],
+      imports: [FormsModule, RouterTestingModule, ReactiveFormsModule, MovieFormModule, MatIconModule],
       providers: [
         {
           provide: EditMovieResolver,

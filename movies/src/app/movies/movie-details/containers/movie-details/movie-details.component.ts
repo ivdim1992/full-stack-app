@@ -21,7 +21,7 @@ export class MovieDetailsComponent {
   ) {}
 
   public onEdit(movieId: string) {
-    this.router.navigate(['movies', 'edit', movieId]);
+    this.router.navigate(['movies', 'edit', movieId], { queryParams: { backRoute: this.router.url } });
   }
 
   public onDelete(title: string, movieId: string) {

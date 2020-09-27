@@ -9,7 +9,6 @@ const auth = require('./middlewares/auth');
 const cors = require('cors');
 const moviesRoutes = require('./routes/movies');
 const userRoutes = require('./routes/user');
-const swaggerRoutes = require('./routes/swagger');
 const authRoutes = require('./routes/auth');
 
 var corsOptions = {
@@ -37,7 +36,6 @@ module.exports = {
 
         app.use('/api', logger);
 
-        app.use(swaggerRoutes);
         app.use('/api', authRoutes);
         app.use('/api', auth, moviesRoutes, userRoutes);
 

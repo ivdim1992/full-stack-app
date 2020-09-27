@@ -1,1 +1,1 @@
-export * from './home.module';
+export * from './movies.module';

@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'movies',
-    loadChildren: () => import('./movies/home.module').then((m) => m.HomeModule)
+    loadChildren: () => import('./movies/movies.module').then((m) => m.MoviesModule)
   },
   {
     path: 'users',
