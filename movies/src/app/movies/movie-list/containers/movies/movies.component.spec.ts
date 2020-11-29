@@ -1,5 +1,5 @@
 import { MoviesComponent } from './movies.component';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MovieCardModule } from '@app/movies/resources/movie-card';
 import { Observable } from 'rxjs';
 import { provideMockActions } from '@ngrx/effects/testing';
@@ -35,7 +35,7 @@ describe('MoviesComponent', () => {
   ];
   let actions$: Observable<any>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [MoviesComponent],
       imports: [MovieCardModule],
