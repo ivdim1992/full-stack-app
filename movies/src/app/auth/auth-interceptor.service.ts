@@ -1,6 +1,6 @@
 import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
-import Url from 'url-parse';
+import { Url } from '../../../node_modules/url-parse';
 import { GLOBAL_SETTINGS, GlobalSettings } from '../shared/tokens';
 import { switchMap, catchError, first } from 'rxjs/operators';
 import { AuthStoreFacade } from './+store/facades';

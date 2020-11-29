@@ -35,6 +35,7 @@
     "@ngrx/store": "^10.0.1",
     "@ngrx/store-devtools": "^10.0.1",
     "@types/jest": "^26.0.3",
+    "@types/url-parse": "^1.4.3",
     "immer": "^6.0.3",
     "jasmine-marbles": "^0.6.0",
     "ng-http-loader": "^7.0.0",

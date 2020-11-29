@@ -1,6 +1,6 @@
 import * as fromRouter from '@ngrx/router-store';
 import { ActionReducer, ActionReducerMap, Action, createFeatureSelector } from '@ngrx/store';
-import { localStorageSync } from 'ngrx-store-localstorage';
+import { localStorageSync } from '../../../../node_modules/ngrx-store-localstorage';
 import { InjectionToken } from '@angular/core';
 import { ISerializedRouterState } from '../router-serializer/router-serializer';
 
