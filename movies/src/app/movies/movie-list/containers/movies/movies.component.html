@@ -1,4 +1,4 @@
-<div *ngFor="let movie of movies$ | async">
+<div *ngFor="let movie of movies">
   <app-movie-card
     [movie]="movie"
     [isInFavorite]="movie.isFavorite"
@@ -9,4 +9,4 @@
   >
   </app-movie-card>
 </div>
-<app-no-movies *ngIf="(movies$ | async).length === 0"></app-no-movies>
+<app-no-movies *ngIf="movies.length === 0"></app-no-movies>

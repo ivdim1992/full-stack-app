@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { EditMovieStoreFacade } from '../../+store/facades';
 import { IMovieOutput } from '../../interfaces';
 import { GenresEnum } from '@app/shared/enums';
@@ -12,7 +12,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./edit-movie.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditMovieComponent implements OnInit {
+export class EditMovieComponent implements OnInit, OnDestroy {
   public movie$ = this.editMovieStoreFacade.movie$;
   public options: string[] = [];
   public navigateBack: string;
@@ -39,5 +39,9 @@ export class EditMovieComponent implements OnInit {
       title: movieForm.title,
       year: movieForm.year
     };
+  }
+
+  ngOnDestroy() {
+    this.editMovieStoreFacade.clear();
   }
 }

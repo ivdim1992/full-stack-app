@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, Inject, OnDestroy } from '@angular/core';
 import { MovieFormComponent } from 'src/app/movies/resources/movie-form/components';
 import { CreateMovieStoreFacade } from '../../+store/facades';
 import { GenresEnum } from 'src/app/shared/enums';
@@ -10,10 +10,9 @@ import { GLOBAL_SETTINGS, GlobalSettings } from '@app/shared/tokens';
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
-  styleUrls: ['./add-movie.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./add-movie.component.scss']
 })
-export class AddMovieComponent implements OnInit {
+export class AddMovieComponent implements OnInit, OnDestroy {
   public options: string[] = [];
   public URL = `${this.settings.api.baseURL}/movies`;
   public user$ = this.authStoreFacade.user$;
@@ -47,12 +46,15 @@ export class AddMovieComponent implements OnInit {
     this.uploader.onCompleteItem = (item: any, response: string) => {
       this.createMovieStoreFacade.createMovie(JSON.parse(response));
     };
-
     this.uploader.onBuildItemForm = (item, form) => {
       form.append('description', this.movieForm.value.description);
       form.append('genres', this.movieForm.value.genres);
       form.append('title', this.movieForm.value.title);
       form.append('year', this.movieForm.value.year);
     };
+  }
+
+  ngOnDestroy() {
+    this.createMovieStoreFacade.clear();
   }
 }

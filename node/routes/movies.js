@@ -6,17 +6,6 @@ const upload = require('../services/file-upload');
 
 router.get('/movies', async (req, res, next) => {
     try {
-        let comedy = 0;
-        let actions = 0;
-        let drama = 0;
-        let horror = 0;
-        let fantasy = 0;
-        let adventure = 0;
-        let animation = 0;
-        let crime = 0;
-        let family = 0;
-        let mystery = 0;
-
         const movies = await Movie.find({ creator: req.user.id });
 
         res.status(200).setHeader('Content-Type', 'application/json');
@@ -38,6 +27,7 @@ router.post('/movies', upload.single('image'), async (req, res, next) => {
             ...req.body,
             creator: req.user.id,
             poster: req.file.location,
+            genres: req.body.genres.split(','),
         });
 
         req.user.movies.push(movie.id);

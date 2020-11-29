@@ -1,6 +1,10 @@
 <app-side-nav></app-side-nav>
 <app-header [user]="user$ | async" (signOutSelected)="onSignOut()"></app-header>
-<app-genre [genresCount]="genresCount" (selectedGenre)="onSelectGenre($event)" (clearSelection)="onClear()"></app-genre>
+<app-genre
+  [genresCount]="moviesGenres$ | async"
+  (selectedGenre)="onSelectGenre($event)"
+  (clearSelection)="onClear()"
+></app-genre>
 
 <div class="movies-container">
   <router-outlet></router-outlet>

@@ -8,7 +8,6 @@ import { IMovie } from 'src/app/shared/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MovieCardComponent {
-  @Input() public _movie: IMovie;
   @Output() public viewDetailsSelected = new EventEmitter<string>();
   @Output() public favoriteIconSelected = new EventEmitter<{ movieId: string; setOrRemoveFromFavorites: boolean }>();
 
@@ -23,11 +22,11 @@ export class MovieCardComponent {
   public get isInFavorite() {
     return this._isInFavorite;
   }
+  private _movie: IMovie;
 
   @Input() public set movie(movie: IMovie) {
     if (!movie) return;
     this._movie = movie;
-    this.cd.detectChanges();
   }
 
   public get movie() {

@@ -13,7 +13,17 @@ export class GenreComponent {
   @Output() public selectedGenre = new EventEmitter<IGenre>();
   @Output() public clearSelection = new EventEmitter();
 
-  @Input() public genresCount;
+  private _genresCount;
+  @Input() set genresCount(value) {
+    if (!value) {
+      return;
+    }
+    this._genresCount = value;
+  }
+
+  get genresCount() {
+    return this._genresCount;
+  }
 
   public currentIndex: number;
   public genres: string[] = Object.values(GenresEnum);

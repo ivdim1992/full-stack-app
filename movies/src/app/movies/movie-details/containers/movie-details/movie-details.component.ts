@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { MovieDetailsStoreFacade } from '../../+store/facades';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteMovieDialogComponent } from '../../components';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./movie-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MovieDetailsComponent {
+export class MovieDetailsComponent implements OnDestroy {
   public movie$ = this.movieDetailsStoreFacade.movie$;
 
   constructor(
@@ -39,5 +39,9 @@ export class MovieDetailsComponent {
 
         this.movieDetailsStoreFacade.deleteMovie(movieId);
       });
+  }
+
+  ngOnDestroy() {
+    this.movieDetailsStoreFacade.clear();
   }
 }

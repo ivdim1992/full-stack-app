@@ -14,6 +14,7 @@ export class MovieListStoreFacade {
 
   public selectedGenre$ = this.store.pipe(select(SelectedGenreSelectors.genres));
   public movies$ = this.store.pipe(select(MovieListSelectors.getFilteredMovies));
+  public moviesGenres$ = this.store.pipe(select(MovieListSelectors.getMoviesGenres));
 
   public readonly selectedGenresMap$ = this.store.pipe(select(SelectedGenreSelectors.genreEntities));
 
