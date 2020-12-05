@@ -6,7 +6,7 @@ const auth = async (req, res, next) => {
         return res
             .status(500)
             .send({
-                error: 'Not Authorized',
+                message: 'Not Authorized',
             })
             .end();
     }
@@ -19,7 +19,7 @@ const auth = async (req, res, next) => {
                     {
                         success: true,
                     },
-                    app.get(process.env.JWT_SECRET),
+                    process.env.JWT_SECRET,
                     {
                         expiresIn: '5m',
                     }
@@ -27,9 +27,6 @@ const auth = async (req, res, next) => {
                 req.user.token = refreshedToken;
                 next();
             }
-            res.status(401).send({
-                error: err.message,
-            });
         }
         return decoded;
     });

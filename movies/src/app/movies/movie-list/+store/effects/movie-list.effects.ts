@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { MovieListActions } from '../actions';
-import { switchMap, catchError, map } from 'rxjs/operators';
+import { switchMap, catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MoviesService } from '../../movies.service';
+import { SnackBarService } from '@app/shared/services';
+import { SnackBarIconTypes, SnackTypes } from '@app/shared/enums';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class MovieListEffects {
@@ -31,5 +34,27 @@ export class MovieListEffects {
     )
   );
 
-  constructor(private readonly actions$: Actions, private readonly moviesService: MoviesService) {}
+  public readonly showSnackbar$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(MovieListActions.getMoviesFailure),
+        tap(({ error }) => {
+          this.snackbarService.open({
+            message: error.message,
+            action: 'X',
+            type: SnackTypes.ERROR,
+            icon: SnackBarIconTypes.ERROR
+          });
+          return this.router.navigate(['auth', 'sign-in']);
+        })
+      ),
+    { dispatch: false }
+  );
+
+  constructor(
+    private readonly actions$: Actions,
+    private readonly moviesService: MoviesService,
+    private readonly snackbarService: SnackBarService,
+    private readonly router: Router
+  ) {}
 }
