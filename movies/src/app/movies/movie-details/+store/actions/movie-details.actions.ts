@@ -9,7 +9,10 @@ export const deleteMovie = createAction('[Movie Details Module] Delete Movie', p
 // Success
 export const getMovieSuccess = createAction('[Movie Details Module] Get Movie Success', props<{ movie: IMovie }>());
 
-export const deleteMovieSuccess = createAction('[Movie Details Module] Delete Movie Success');
+export const deleteMovieSuccess = createAction(
+  '[Movie Details Module] Delete Movie Success',
+  props<{ movieId: string }>()
+);
 // Failure
 export const getMovieFailure = createAction(
   '[Movie Details Module] Get Movie Failure',

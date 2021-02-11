@@ -27,7 +27,7 @@ export class MovieDetailsEffects {
       ofType(MovieDetailsActions.deleteMovie),
       switchMap(({ movieId }) =>
         this.moviesService.deleteMovie(movieId).pipe(
-          map((_) => MovieDetailsActions.deleteMovieSuccess()),
+          map((_) => MovieDetailsActions.deleteMovieSuccess({ movieId })),
           catchError((error) => of(MovieDetailsActions.deleteMovieFailure({ error })))
         )
       )

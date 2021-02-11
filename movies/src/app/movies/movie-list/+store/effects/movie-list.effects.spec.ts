@@ -7,6 +7,8 @@ import { MoviesService } from '@app/movies/movie-list/movies.service';
 import { MovieListEffects } from './movie-list.effects';
 import { MovieListActions } from '../actions';
 import { IMovie } from '@app/shared/interfaces';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('Auth Effects', () => {
   let effects: MovieListEffects;
@@ -15,6 +17,7 @@ describe('Auth Effects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [MatSnackBarModule, RouterTestingModule],
       providers: [
         MovieListEffects,
         {
@@ -26,9 +29,9 @@ describe('Auth Effects', () => {
       ]
     });
 
-    effects = TestBed.get(MovieListEffects);
-    movieService = TestBed.get(MoviesService);
-    actions$ = TestBed.get(Actions);
+    effects = TestBed.inject(MovieListEffects);
+    movieService = TestBed.inject(MoviesService);
+    actions$ = TestBed.inject(Actions);
   });
 
   it('should be created', () => {

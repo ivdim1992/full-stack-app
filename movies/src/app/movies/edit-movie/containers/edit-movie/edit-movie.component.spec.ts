@@ -1,6 +1,5 @@
 import { EditMovieComponent } from './edit-movie.component';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-// import * as fromRootStore from '../../../../+store';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
 import { IMovieInput } from '../../interfaces';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +36,7 @@ describe('Edit Movie Component', () => {
     });
   });
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [EditMovieComponent],
       imports: [FormsModule, RouterTestingModule, ReactiveFormsModule, MovieFormModule, MatIconModule],
@@ -62,7 +61,7 @@ describe('Edit Movie Component', () => {
         provideMockActions(() => actions$)
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EditMovieComponent);
